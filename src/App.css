@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200;300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600&display=swap');
+/* font-family: 'Teko', sans-serif; */
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  font-family: 'Source Code Pro', monospace;
+}
+
+body {
+  text-align: center;
+}
+
+/* NAVBAR */
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+/* HOME */
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background: linear-gradient(180deg, #FFFFFF -70.72%, rgba(255, 255, 255, 0) 100%), #B143B4;
+  border: 2px solid #000000;
+}
