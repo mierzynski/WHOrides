@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200;300;400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600&display=swap');
 /* font-family: 'Teko', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600&display=swap');
+/* font-family: 'Chakra Petch', sans-serif; */
+
 
 html, body {
   margin: 0;
@@ -26,7 +29,7 @@ nav {
 }
 
 nav button {
-  font-size: 28px;
+  font-size: 1.5rem;
   font-weight: 600;
   width: 18%;
   padding: 15px;
@@ -46,5 +49,75 @@ nav button:hover {
   height: 100vh;
   position: fixed;
   background: linear-gradient(180deg, #FFFFFF -70.72%, rgba(255, 255, 255, 0) 100%), #B143B4;
+}
+
+#title_home {
+  width: 100%;
+}
+
+#who_title {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 10.25rem;
+  font-weight: 500;
+}
+
+#rides_title {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 6.125rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+}
+
+#sign_and_image {
+  display: flex;
+  flex-direction: column;
+}
+
+.columns {
+  width: 50%;
+}
+
+.columnTxt {
+  font-weight: 400;
+  font-size: 3rem;
+  font-family: 'Teko', sans-serif;
+  margin: 0;
+  padding-left: 6rem;
+  line-height: 3rem;
+}
+
+#bottomTxt {
+  font-weight: 300;
+  padding-left: 11rem;
+  padding-bottom: 1rem;
+}
+
+.button_curved {
+  background: #E7855B;
   border: 2px solid #000000;
+  box-shadow: 0px 0px 0px #000000;
+  border-radius: 25px;
+  padding: 0.25rem 2.5rem;
+}
+
+.button_curved span {
+  font-family: 'Chakra Petch';
+  font-weight: 500;
+  font-size: 1.625rem;
+}
+
+#bottom_home {
+  padding-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  background-color: #E7855B;
+  }
+
+.bg_rectangle {
+  width: 53.063rem;
+  height: 11.875rem;
+  background: #FFE2BF;
+  border: 2px solid #000000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
 }
