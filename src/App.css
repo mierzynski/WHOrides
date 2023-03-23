@@ -38,7 +38,7 @@ nav button {
 }
 
 nav button:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(0, 0, 0, 0.1);
   /* border: 1px solid #000000; */
 }
 
@@ -70,11 +70,12 @@ nav button:hover {
 
 #sign_and_image {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .columns {
   width: 50%;
+  height: 30%;
 }
 
 .columnTxt {
@@ -106,18 +107,74 @@ nav button:hover {
   font-size: 1.625rem;
 }
 
+#img_home {
+  height: 200px;
+  border: 2px solid #000000;
+  border-radius: 5px;
+
+}
+
 #bottom_home {
   padding-top: 3rem;
+  position: fixed;
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: end;
-  background-color: #E7855B;
+  bottom: 2rem;
+  height: 22%;
   }
 
 .bg_rectangle {
-  width: 53.063rem;
-  height: 11.875rem;
   background: #FFE2BF;
   border: 2px solid #000000;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
+}
+
+#bottom_home .bg_rectangle {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+}
+
+#bottom_title {
+  font-family: 'Teko', sans-serif;
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+#bottom_content {
+  font-family: 'Teko', sans-serif;
+  font-weight: 300;
+  font-size: 1.25rem;
+  line-height: 1.25rem;
+  padding: 0.5rem 3rem;
+}
+
+#bottom_content span {
+  font-family: 'Teko', sans-serif;
+  font-weight: 400;
+  font-size: 1.25rem;
+}
+
+#botton_SIGNUP {
+  background-color: #D1FF87;
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0rem 1rem;
+  margin: 0% 1%;
+  border: 1px solid #000000;
+  width: 14%;
+}
+
+#botton_DMUS {
+  background-color: transparent;
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0rem 1rem;
+  margin: 0% 1%;
+  border: 1px solid #000000;
+  width: 14%;
 }
