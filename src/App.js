@@ -10,8 +10,11 @@ const App = () => {
       { authToken ? 
       (<Route path="/logged" element={<Home/>}/>) 
       : 
-      (<Route path="/" element={<Home formOrNot={false}/>}/>) }
-        <Route path="/login" element={<Home formOrNot={true}/>}/>
+      (<Route path="/" element={<Home/>}/>) }
+        <Route path="/login" element={<Home content="login"/>}/>
+        <Route path="/signup" element={<Home content="signup"/>}/>
+        <Route path="/about" element={<Home content="about"/>}/>
+        <Route path="/contact" element={<Home content="contact"/>}/>
       </Routes>
     </BrowserRouter>
   )

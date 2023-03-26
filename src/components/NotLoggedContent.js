@@ -1,13 +1,17 @@
 import image_home from "../image_home.png"
+import { useNavigate } from 'react-router-dom';
 
 const NotLoggedContent = () => {
+
+    const navigate = useNavigate()
+
     return(
         <div>
                 <div id="sign_and_image">
                 <div className="columns">
                     <p className="columnTxt">Leave your headphones,</p>
                     <p className="columnTxt" id="bottomTxt">you are not going alone today</p>
-                    <button className="button_curved"><span>SIGN UP</span></button>
+                    <button className="button_curved" onClick={() => navigate('/signup')}><span>SIGN UP</span></button>
                 </div>
                 <div className="columns">
                     <img id="img_home" src={image_home} alt="cyclist_aesthetic"/>
@@ -20,8 +24,8 @@ const NotLoggedContent = () => {
                         Unlike various group on social networks, dating apps, where were you looking for companionship to drive.
                         Here to goal is clear: <span>spin for kilometers</span></div>
                     <div id="bottom_buttons">
-                        <button className="button_curved" id="botton_SIGNUP">SIGN UP</button>
-                        <button className="button_curved" id="botton_DMUS">DM US</button>
+                        <button className="button_curved" id="botton_SIGNUP" onClick={() => navigate('/signup')}>SIGN UP</button>
+                        <button className="button_curved" id="botton_DMUS" onClick={() => navigate('/contact')}>DM US</button>
                     </div>
                 </div>
 
