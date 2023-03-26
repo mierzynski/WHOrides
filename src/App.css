@@ -39,7 +39,13 @@ nav button {
 
 nav button:hover {
   background-color: rgba(0, 0, 0, 0.1);
-  /* border: 1px solid #000000; */
+  border: 1px solid #000000;
+}
+
+nav button:focus {
+  border: solid #000000;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-width: 4px 3px 1px 3px;
 }
 
 
