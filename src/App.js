@@ -1,14 +1,15 @@
 import Home from "./pages/Home"
+import Profile from "./pages/Profile";
 import { BrowserRouter, Routes, Route} from "react-router-dom"
 
 const App = () => {
 
-  const authToken = false;
+  const authToken = true;
   return (
     <BrowserRouter>
       <Routes>
       { authToken ? 
-      (<Route path="/logged" element={<Home/>}/>) 
+      (<Route path="/profile" element={<Profile/>}/>) 
       : 
       (<Route path="/" element={<Home/>}/>) }
         <Route path="/login" element={<Home content="login"/>}/>

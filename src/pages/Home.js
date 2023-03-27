@@ -10,7 +10,7 @@ const Home = (props) => {
 
     return(
         <>
-        <Navbar/>
+        <Navbar isLogged={false}/>
         <div className="overlay">
             <div id="title_home">
                 <span id="who_title">WHO</span><span id="rides_title">rides</span>

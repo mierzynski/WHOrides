@@ -36,7 +36,7 @@ const LogInForm = () => {
                         />
                         <label onClick={() => navigate('/signup')}>Don't have account? Sign up here</label>
 
-                        <button className="submitButton" type="submit">GO FOR A RIDE!</button>
+                        <button className="submitButton" type="submit" onClick={() => navigate('/profile')}>GO FOR A RIDE!</button>
                  </form>
                 </div>
             </div>
