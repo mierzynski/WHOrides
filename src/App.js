@@ -1,5 +1,4 @@
 import Home from "./pages/Home"
-import Profile from "./pages/Profile";
 import { BrowserRouter, Routes, Route} from "react-router-dom"
 import {useCookies} from 'react-cookie'
 
@@ -12,14 +11,14 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-      { authToken ? 
-      (<Route path="/profile" element={<Profile/>}/>) 
-      : 
-      (<Route path="/" element={<Home/>}/>) }
-        <Route path="/login" element={<Home content="login"/>}/>
-        <Route path="/signup" element={<Home content="signup"/>}/>
-        <Route path="/about" element={<Home content="about"/>}/>
-        <Route path="/contact" element={<Home content="contact"/>}/>
+      <Route path="/" element={<Home/>}/>
+      <Route path="/login" element={<Home content="login"/>}/>
+      <Route path="/signup" element={<Home content="signup"/>}/>
+      <Route path="/about" element={<Home content="about"/>}/>
+      <Route path="/contact" element={<Home content="contact"/>}/>
+
+      {authToken && <Route path="/profile" element={<Home content="profile"/>}/>}
+      {authToken && <Route path="/find_friends" element={<Home content="find_friends"/>}/>}
       </Routes>
     </BrowserRouter>
   )

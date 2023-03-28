@@ -9,8 +9,8 @@ const Navbar = (props) => {
         { isLogged ?
             (
                 <nav>
-                <button className="nav-button" onClick={() => navigate('/contact')}>CHAT</button>
-                <button className="nav-button" onClick={() => navigate('/search')}>FIND_FRIENDS</button>
+                <button className="nav-button" onClick={() => navigate('/chat')}>CHAT</button>
+                <button className="nav-button" onClick={() => navigate('/find_friends')}>FIND_FRIENDS</button>
                 <button className="nav-button" onClick={() => navigate('/profile')}>PROFILE</button>
                 <button className="nav-button" onClick={() => navigate('/events')}>EVENTS</button>
                 <button className="nav-button" onClick={() => navigate('/')}>LOG OUT</button>
