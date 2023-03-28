@@ -314,8 +314,13 @@ nav button:focus {
   font-weight: 600;
   font-size: 0.5rem;
   line-height: 0.8rem;
-  margin-right: auto;
-  width: 60%;
+  text-align: left;
+  width: 80%;
+  padding: 0rem 0.6rem;
+}
+
+#signUpError {
+  color: red;
 }
 
 .formSignUpLogIn label:hover {

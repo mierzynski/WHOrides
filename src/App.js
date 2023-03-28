@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route} from "react-router-dom"
 
 const App = () => {
 
-  const authToken = true;
+  const authToken = false;
   return (
     <BrowserRouter>
       <Routes>
