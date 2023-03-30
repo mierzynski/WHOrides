@@ -19,7 +19,9 @@ const RowUser = () => {
         <FaUser className="userFa" />
       </div>
       <div className="details_rowUser">
-        <div className="nameAndAge_rowUser">Maciej 24</div>
+        <div className="nameAndAge_rowUser">
+          {data[0].name} {data[0].age}
+        </div>
         <div className="rateAndComments_userRow">4.9/5 (16 ratings)</div>
         <div className="rateAndComments_userRow">10 comments</div>
       </div>
