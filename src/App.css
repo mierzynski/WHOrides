@@ -614,7 +614,7 @@ nav button:focus {
   padding: 1rem;
 }
 
-.profile_avatar{
+.profile_avatar{  
   padding: 5.5%;
   box-shadow: 0px 2px 20px 5px rgba(0, 0, 0, 0.5);
   border-radius: 4px;
@@ -632,7 +632,7 @@ nav button:focus {
   position: absolute;
   display: flex;
   align-self: flex-end;
-  width: 10.25rem;
+  width: 9.72rem;
   height: 3.438rem;
   font-family: 'Chakra Petch';
   font-weight: 600;
