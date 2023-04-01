@@ -5,7 +5,8 @@
 /* font-family: 'Chakra Petch', sans-serif; */
 
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
@@ -257,6 +258,7 @@ nav button:focus {
   width: 6rem;
   margin-top: 0.3rem;
 }
+
 .currentStep p {
   font-weight: 600;
 }
@@ -360,7 +362,7 @@ nav button:focus {
   text-align: right;
 }
 
-.inputStepTwo select{
+.inputStepTwo select {
   background-color: transparent;
   font-family: 'Chakra Petch', sans-serif;
   font-weight: 600;
@@ -418,7 +420,7 @@ nav button:focus {
 }
 
 /* FIND FRIENDS */
-.findFriends_container{
+.findFriends_container {
   width: 100%;
   height: 70%;
   padding-top: 0.5%;
@@ -477,7 +479,7 @@ nav button:focus {
 
 .notClickedButtonType {
   font-family: 'Chakra Petch', sans-serif;
-  background-color:#D1FF87;
+  background-color: #D1FF87;
   border: solid #000000;
   border-width: 2px 2px 5px 2px;
   padding: 0.125rem 0.4rem;
@@ -519,14 +521,15 @@ nav button:focus {
   margin-bottom: 5%;
   margin-top: 2.5%;
 }
+
 .inputRange::-webkit-outer-spin-button,
 .inputRange::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .inputRange[type=number] {
-    -moz-appearance: textfield;
+  -moz-appearance: textfield;
 }
 
 .inputLocation {
@@ -603,3 +606,129 @@ nav button:focus {
   padding: 3px;
   text-align: justify;
 }
+
+/* PROFILE */
+
+
+.photos_profile_row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;   
+  text-align: center;
+  padding: 1rem;
+}
+
+.profile_avatar{
+  padding: 5.5%;
+  box-shadow: 0px 2px 20px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+}
+
+#profile_main_avatar{
+  z-index: 1;
+  position: relative;
+}
+
+#upload_photo{
+  z-index: 2;
+  background: rgba(231, 133, 91, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 0px 0px 4px 4px;
+  position: absolute;
+}
+
+.data_profile_row{
+  display: flex; 
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.title_details_left{
+  text-align: left;
+}
+
+.title_details_right{
+  text-align: right;
+}
+
+#collumn_data_profile_left{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+#collumn_data_profile_center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+#collumn_data_profile_right{
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: center;
+
+}
+
+.user_details{
+  font-family: 'Teko';
+  font-weight: 500;
+  font-size: 2.5rem;
+  line-height: 2rem;
+  padding-top: 0.5rem;
+}
+
+.user_details_type {
+  font-family: 'Chakra Petch';
+  font-weight: 600;
+  font-size: 0.75rem;
+  line-height: 0.75rem;
+  color: #8B8B8B;
+}
+
+.description_profile_row{
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ padding: 1rem;
+}
+
+.description_profile_title{
+  background: #D1FF87;
+  border-width: 1px 1px 0px 1px;
+  border-style: solid;
+  border-color: #000000;
+  padding: 0px 0.5rem;
+  text-align: center;
+  font-size: 0.88rem;
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 600;
+}
+
+#decription_rowUser_main_profile{
+  font-weight: 600;
+  font-size: 0.688rem;
+  width: 57%;
+  height: 4rem;
+}
+
+textarea{
+  resize: none;
+}
+
+#save_changes_profile{
+  background: #D1FF87;
+  font-family: 'Chakra Petch';
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0rem 1rem;
+  border: 1px solid #000000;
+  width: 57% ;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+  
