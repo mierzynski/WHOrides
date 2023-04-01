@@ -1,21 +1,18 @@
 import { useState } from "react";
 
 const FiltersBar = () => {
-  const [isFocus, setIsFocus] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
 
   const handleClick = () => {
-    if (isFocus) {
-      removeFocus();
-    }
-  };
-
-  const removeFocus = (e) => {
-    e.target.blur();
+    setIsClicked((current) => !current);
   };
 
   const buttonTypes = (value) => {
     return (
-      <button className="notClickedButtonType" onClick={handleClick}>
+      <button
+        className={isClicked ? "clickedButtonType" : "notClickedButtonType"}
+        onClick={handleClick}
+      >
         {value}
       </button>
     );

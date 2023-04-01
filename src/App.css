@@ -463,16 +463,12 @@ nav button:focus {
   margin-bottom: 5%;
 }
 
-/* .clickedButtonType {
+.clickedButtonType {
   font-family: 'Chakra Petch', sans-serif;
   background-color: #000000;
   border: 2px solid #000000;
   padding: 0.125rem 0.4rem;
   color: #D1FF87;
-} */
-
-.notClickedButtonType:focus {
-  border-bottom: 2px solid #000000;
 }
 
 .notClickedButtonType {
