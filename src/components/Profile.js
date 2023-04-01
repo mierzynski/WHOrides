@@ -27,15 +27,13 @@ const Profile = () => {
 
     return (
         <div className="bg_rectangle">
+
             <div className="photos_profile_row">
                 <FaUser className="userFa avatar_rowUser profile_avatar" />
-                <div>
-                    <FaUser className="userFa avatar_rowUser profile_avatar" id="profile_main_avatar"/> 
-                    <div id="upload_photo">UPLOAD PHOTO</div>
-                </div>
+                <FaUser className="userFa avatar_rowUser profile_avatar" id="profile_main_avatar"/> 
+                <div id="upload_photo">UPLOAD PHOTO</div>
                 <FaUser className="userFa avatar_rowUser profile_avatar" />
             </div>
-
 
             <div className="data_profile_row">
                 <div id="collumn_data_profile_left">

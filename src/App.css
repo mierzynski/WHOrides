@@ -622,7 +622,6 @@ nav button:focus {
 
 #profile_main_avatar{
   z-index: 1;
-  position: relative;
 }
 
 #upload_photo{
@@ -631,6 +630,16 @@ nav button:focus {
   backdrop-filter: blur(10px);
   border-radius: 0px 0px 4px 4px;
   position: absolute;
+  display: flex;
+  align-self: flex-end;
+  width: 10.25rem;
+  height: 3.438rem;
+  font-family: 'Chakra Petch';
+  font-weight: 600;
+  font-size: 0.75rem;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
 }
 
 .data_profile_row{
