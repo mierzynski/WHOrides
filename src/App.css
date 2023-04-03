@@ -432,9 +432,9 @@ nav button:focus {
   justify-content: space-around;
 }
 
-.column {
+.columnFindFriends {
   width: 40%;
-  height: 80%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -545,11 +545,12 @@ nav button:focus {
 
 /* LIST */
 .data_list {
+  overflow-y: scroll;
   margin-top: 3%;
   padding: 2%;
   background: linear-gradient(180deg, #FFFFFF -117.46%, rgba(217, 217, 217, 0) 100%);
   width: 90%;
-  height: 100%;
+  height: 300px;
 }
 
 .row_user {
@@ -605,6 +606,128 @@ nav button:focus {
   border-color: #000000;
   padding: 3px;
   text-align: justify;
+}
+
+.profile_details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 70%;
+}
+
+#photos_profile {
+  overflow-x: scroll;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 95%;
+  height: 60%;
+  background: linear-gradient(180deg, #FFFFFF -150%, rgba(255, 255, 255, 0) 100%), #BF65C2;
+  box-shadow: inset 0 0 4px 2px rgba(0, 0, 0, 0.75);
+}
+
+.photoInUserDetails{
+  background-color: #D1FF87;
+  box-shadow: 0px 2px 20px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  height: 90%;
+  padding: 0rem 4.5rem;
+  margin: 0rem 0.5rem;
+  font-size: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#detailsAndComments {
+  display: flex;
+  flex-direction: row;
+  height: 40%;
+  width: 100%;
+  justify-content: space-around;
+}
+
+#detailsType {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: left;
+}
+
+#detailsType span{
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+#detailsData{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: right;
+}
+
+#detailsData span{
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+#commentsInProfileDetails{
+  display: flex;
+  flex-direction: column;
+}
+
+#commentsInProfileDetails span{
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+#commentsHole {
+  height: 100%;
+  background: linear-gradient(180deg, #FFFFFF -150%, rgba(255, 255, 255, 0) 100%), #BF65C2;
+  box-shadow: inset 0 0 4px 2px rgba(0, 0, 0, 0.75);
+}
+
+.commentBg{
+  background-color: #FFE2BF;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  margin: 0.5rem 0.3rem;
+  width: 11.25rem;
+}
+
+.commentAuthor {
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 600;
+  font-size: 0.75rem;
+  line-height: 0.75rem;
+  text-align: left;
+  padding: 0.188rem 0.375rem;
+}
+
+.commentsContent{
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 400;
+  font-size: 0.625rem;
+  text-align: left;
+  padding: 0rem 0.375rem;
+}
+
+.commentDate{
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 400;
+    font-size: 0.625rem;
+    text-align: right;
+    padding-right: 0.375rem;
+}
+
+.starsRate{
+  font-size: 0.6rem;
+  text-align: left;
+  padding-left: 0.375rem;
 }
 
 /* PROFILE */

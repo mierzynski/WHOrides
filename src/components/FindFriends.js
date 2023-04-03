@@ -1,23 +1,26 @@
 import RowUser from "./RowUser";
 import FiltersBar from "./FiltersBar";
 import CommentRow from "./CommentRow";
-import { FixedSizeList as List } from "react-window";
+import PhotoUserDetailsFind from "./PhotoUserDetailsFind";
 
 const FindFriends = () => {
   return (
     <div className="findFriends_container">
-      <div className="column">
+      <div className="columnFindFriends">
         <FiltersBar />
         <div className="data_list">
-          <List height={400} itemCount={6} itemSize={100} width="100%">
-            {RowUser}
-          </List>
+          <RowUser />
         </div>
       </div>
 
-      <div className="column">
+      <div className="columnFindFriends">
         <div className="profile_details bg_rectangle">
-          <div id="photos_profile"></div>
+          <div id="photos_profile">
+            <PhotoUserDetailsFind />
+            <PhotoUserDetailsFind />
+            <PhotoUserDetailsFind />
+            <PhotoUserDetailsFind />
+          </div>
           <div id="detailsAndComments">
             <div id="detailsType">
               <span>name:</span>
