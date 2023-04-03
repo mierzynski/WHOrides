@@ -19,6 +19,10 @@ body {
   text-align: center;
 }
 
+button {
+  cursor: pointer;
+}
+
 /* NAVBAR */
 nav {
   width: 100%;
@@ -49,7 +53,7 @@ nav button:hover {
 nav button:focus {
   border: solid #000000;
   background-color: rgba(0, 0, 0, 0.1);
-  border-width: 4px 3px 1px 3px;
+  border-width: 0px 3px 1px 3px;
   height: 90%;
 }
 
@@ -628,18 +632,19 @@ nav button:focus {
   z-index: 2;
   background: rgba(231, 133, 91, 0.2);
   backdrop-filter: blur(10px);
-  border-radius: 0px 0px 4px 4px;
+  /* border-radius: 0px 0px 4px 4px; */
+  border: none;
   position: absolute;
   display: flex;
   align-self: flex-end;
-  width: 9.72rem;
+  width: 9.723rem;
   height: 3.438rem;
   font-family: 'Chakra Petch';
   font-weight: 600;
   font-size: 0.75rem;
   align-items: center;
   text-align: center;
-  justify-content: center;
+  justify-content: center;  
 }
 
 .data_profile_row{

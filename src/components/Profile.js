@@ -5,25 +5,41 @@ const Profile = () => {
 
     const [description, setDescripton] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
+    const [isClicked, setIsClicked] = useState(false);
+    
     console.log(description);
 
     const handleClick = () => {
-        if (isFocus) {
-            removeFocus();
-        }
-    };
-
-    const removeFocus = (e) => {
-        e.target.blur();
-    };
-
-    const buttonTypes = (value) => {
+        setIsClicked((current) => !current);
+      };
+    
+      const buttonTypes = (value) => {
         return (
-            <button className="notClickedButtonType" onClick={handleClick}>
-                {value}
-            </button>
+          <button
+            className={isClicked ? "clickedButtonType" : "notClickedButtonType"}
+            onClick={handleClick}
+          >
+            {value}
+          </button>
         );
-    };
+      };
+
+    //   const saveChanges = (value) => {
+    //     return (
+            
+    //     )
+    //   }
+
+    //   const saveChangesBtn = (value) =>
+    // {
+    //     return(
+    //         <button className={isClicked ? "clickedButtontype" : "notClickedButtonType"}
+    //         onClick={saveChanges}
+    //         >
+    //             {value}
+    //         </button>
+    //     );
+    // }
 
     return (
         <div className="bg_rectangle">
@@ -31,7 +47,7 @@ const Profile = () => {
             <div className="photos_profile_row">
                 <FaUser className="userFa avatar_rowUser profile_avatar" />
                 <FaUser className="userFa avatar_rowUser profile_avatar" id="profile_main_avatar"/> 
-                <div id="upload_photo">UPLOAD PHOTO</div>
+                <button className=""id="upload_photo">UPLOAD PHOTO</button>
                 <FaUser className="userFa avatar_rowUser profile_avatar" />
             </div>
 
@@ -66,9 +82,9 @@ const Profile = () => {
                 <div id="collumn_data_profile_right">
                     <div className="titleOfFilter title_details_right">surface types</div>
                     <div className="clicableTypes">
+                        {buttonTypes("mixed")}
+                        {buttonTypes("forest")}
                         {buttonTypes("road")}
-                        {buttonTypes("gravel")}
-                        {buttonTypes("mtb")}
                     </div>
                     <div className="titleOfFilter title_details_right">distance range</div>
                     <div className="rangeFilter">
