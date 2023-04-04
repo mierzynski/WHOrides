@@ -1,7 +1,30 @@
 import { useState } from "react";
 
-const FiltersBar = () => {
+const FiltersBar = (props) => {
   const [isClicked, setIsClicked] = useState(false);
+  const [ageMin, setAgeMin] = useState(null);
+  const [ageMax, setAgeMax] = useState(null);
+  const [location, setLocation] = useState(null);
+  const filters = {
+    bike_types: null,
+    surface_types: null,
+    avg_pace: null,
+    distance_range: null,
+    age_min: null,
+    age_max: null,
+    location: null,
+  };
+  const setFilters = () => {
+    if (ageMin) {
+      filters.age_min = ageMin;
+    }
+    if (ageMax) {
+      filters.age_max = ageMax;
+    }
+    if (location) {
+      filters.location = location;
+    }
+  };
 
   const handleClick = () => {
     setIsClicked((current) => !current);
@@ -54,9 +77,19 @@ const FiltersBar = () => {
       <div className="columnFilters">
         <div className="titleOfFilter">age range</div>
         <div className="rangeFilter">
-          <input className="inputRange" type="number" placeholder="22"></input>
+          <input
+            className="inputRange"
+            type="number"
+            placeholder="22"
+            onChange={(e) => setAgeMin(e.target.value)}
+          ></input>
           <div className="rangeMinus">-</div>
-          <input className="inputRange" type="number" placeholder="22"></input>
+          <input
+            className="inputRange"
+            type="number"
+            placeholder="22"
+            onChange={(e) => setAgeMax(e.target.value)}
+          ></input>
         </div>
         <div className="titleOfFilter">location</div>
         <div className="rangeFilter">
@@ -64,9 +97,11 @@ const FiltersBar = () => {
             className="inputLocation"
             type="text"
             placeholder="Poznań"
+            onChange={(e) => setLocation(e.target.value)}
           ></input>
         </div>
       </div>
+      {props.handleCallback(filters)}
     </div>
   );
 };

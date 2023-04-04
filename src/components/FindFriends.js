@@ -4,12 +4,17 @@ import CommentRow from "./CommentRow";
 import PhotoUserDetailsFind from "./PhotoUserDetailsFind";
 
 const FindFriends = () => {
+  const userBirth = "1924";
+  const Callback = (filtersData) => {
+    console.log(filtersData);
+  };
+
   return (
     <div className="findFriends_container">
       <div className="columnFindFriends">
-        <FiltersBar />
+        <FiltersBar handleCallback={Callback} />
         <div className="data_list">
-          <RowUser />
+          <RowUser userBirth={userBirth} />
         </div>
       </div>
 
@@ -39,6 +44,10 @@ const FindFriends = () => {
             <div id="commentsInProfileDetails">
               <span>comments</span>
               <div id="commentsHole">
+                <CommentRow />
+                <CommentRow />
+                <CommentRow />
+                <CommentRow />
                 <CommentRow />
               </div>
             </div>
