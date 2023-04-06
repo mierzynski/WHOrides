@@ -828,6 +828,14 @@ nav button:focus {
   color: #8B8B8B;
 }
 
+#user_details_type_location_1{
+  padding-top: 0.5rem;
+}
+
+#user_details_type_location_2{
+  padding-top: 0.2rem;
+}
+
 .description_profile_row{
  display: flex;
  flex-direction: column;
