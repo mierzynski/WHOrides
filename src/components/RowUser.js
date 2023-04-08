@@ -2,15 +2,16 @@ import { FaUser } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const RowUser = (props) => {
+const RowUser = (filters) => {
   const [users, setUsers] = useState(null);
 
-  const userBirth = props.userBirth;
+  const objectFilters = filters;
+  console.log(objectFilters);
 
   const getUsers = async () => {
     try {
       const response = await axios.get("http://localhost:8000/users", {
-        params: { userBirthDate: userBirth },
+        params: { userBirthDate: objectFilters },
       });
       setUsers(response.data);
     } catch (error) {

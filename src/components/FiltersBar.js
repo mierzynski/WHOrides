@@ -1,41 +1,95 @@
 import { useState } from "react";
 
 const FiltersBar = (props) => {
-  const [ageMin, setAgeMin] = useState(null);
-  const [ageMax, setAgeMax] = useState(null);
+  const [ageMin, setAgeMin] = useState(18);
+  const [ageMax, setAgeMax] = useState(100);
   const [paceMin, setPaceMin] = useState(null);
   const [paceMax, setPaceMax] = useState(null);
   const [distanceMin, setDistanceMin] = useState(null);
   const [distanceMax, setDistanceMax] = useState(null);
   const [location, setLocation] = useState(null);
-  // const [bikeTypes, setBikeTypes] = useState([]);
-  // const [surfaceTypes, setSurfaceTypes] = useState([]);
-  const [roadBike, setRoadBike] = useState(false);
-  const [gravelBike, setGravelBike] = useState(false);
-  const [mtbBike, setMtbBike] = useState(false);
+  const [roadBike, setRoadBike] = useState("");
+  const [gravelBike, setGravelBike] = useState("");
+  const [mtbBike, setMtbBike] = useState("");
+  const [roadSurface, setRoadSurface] = useState("");
+  const [gravelSurface, setGravelSurface] = useState("");
+  const [mtbSurface, setMtbSurface] = useState("");
+
+  const currentYear = new Date().getFullYear();
 
   const filters = {
     bike_types: [roadBike, gravelBike, mtbBike],
-    surface_types: null,
+    surface_types: [roadSurface, gravelSurface, mtbSurface],
     pace_min: paceMin,
     pace_max: paceMax,
     distance_min: distanceMin,
     distance_max: distanceMax,
-    age_min: ageMin,
-    age_max: ageMax,
+    birth_min: currentYear - ageMin,
+    birth_max: currentYear - ageMax,
     location: location,
   };
 
   const handleClick = (event) => {
     let buttonClass = event.target.className;
     let buttonText = event.target.innerText;
+    let buttonId = event.target.id;
 
-    if (buttonClass == "notClickedButtonType") {
-      console.log("Not clicked " + buttonText);
-      event.target.className = "clickedButtonType";
+    if (buttonId == "bikeTypes") {
+      if (buttonClass == "notClickedButtonType") {
+        switch (buttonText) {
+          case "road":
+            setRoadBike(buttonText);
+            break;
+          case "gravel":
+            setGravelBike(buttonText);
+            break;
+          case "mtb":
+            setMtbBike(buttonText);
+            break;
+        }
+        event.target.className = "clickedButtonType";
+      } else {
+        switch (buttonText) {
+          case "road":
+            setRoadBike("");
+            break;
+          case "gravel":
+            setGravelBike("");
+            break;
+          case "mtb":
+            setMtbBike("");
+            break;
+        }
+        event.target.className = "notClickedButtonType";
+      }
     } else {
-      console.log("Clicked " + buttonText);
-      event.target.className = "notClickedButtonType";
+      if (buttonClass == "notClickedButtonType") {
+        switch (buttonText) {
+          case "road":
+            setRoadSurface(buttonText);
+            break;
+          case "gravel":
+            setGravelSurface(buttonText);
+            break;
+          case "mtb":
+            setMtbSurface(buttonText);
+            break;
+        }
+        event.target.className = "clickedButtonType";
+      } else {
+        switch (buttonText) {
+          case "road":
+            setRoadSurface("");
+            break;
+          case "gravel":
+            setGravelSurface("");
+            break;
+          case "mtb":
+            setMtbSurface("");
+            break;
+        }
+        event.target.className = "notClickedButtonType";
+      }
     }
   };
 
