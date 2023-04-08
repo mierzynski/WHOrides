@@ -25,7 +25,7 @@ const RowUser = (props) => {
   return (
     <>
       {users?.map((user) => (
-        <div className="row_user bg_rectangle">
+        <div key={user.id} className="row_user bg_rectangle">
           <div className="avatar_rowUser">
             <FaUser className="userFa" />
           </div>
