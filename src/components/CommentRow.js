@@ -1,10 +1,11 @@
 import { FaStar } from "react-icons/fa";
 import { FaStarHalf } from "react-icons/fa";
 
-const CommentRow = () => {
+const CommentRow = (props) => {
+  let authorData = props.comment;
   return (
     <div className="commentBg">
-      <div className="commentAuthor">JAREK</div>
+      <div className="commentAuthor">{authorData.name}</div>
       <div className="starsRate">
         <FaStar />
         <FaStar />
@@ -12,8 +13,8 @@ const CommentRow = () => {
         <FaStar />
         <FaStarHalf />
       </div>
-      <div className="commentsContent">Polecam tego allegrowicza!</div>
-      <div className="commentDate">01.04.2023</div>
+      <div className="commentsContent">{authorData.comment}</div>
+      <div className="commentDate">authorData.date</div>
     </div>
   );
 };

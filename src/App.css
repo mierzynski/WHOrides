@@ -561,6 +561,10 @@ nav button:focus {
   margin: 2%;
 }
 
+.row_user:focus{
+  background-color: #E7855B;
+}
+
 .avatar_rowUser {
   background: #D1FF87;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -596,6 +600,7 @@ nav button:focus {
 
 .description_rowUser {
   width: 50%;
+  height: 4rem;
   font-family: 'Teko';
   font-weight: 600;
   font-size: 0.6rem;

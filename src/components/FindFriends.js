@@ -1,55 +1,31 @@
 import RowUser from "./RowUser";
 import FiltersBar from "./FiltersBar";
-import CommentRow from "./CommentRow";
-import PhotoUserDetailsFind from "./PhotoUserDetailsFind";
+import ProfileDetailsUser from "./ProfileDetailsUser";
+import { useState } from "react";
 
 const FindFriends = () => {
-  const getFilters = (data) => {};
+  const [clickedRowUser, setClickedRowUser] = useState();
+  let filterArrays;
+  const getFilters = (data) => {
+    filterArrays = Object.keys(data).map((key) => [key, data[key]]);
+    return filterArrays;
+  };
+
+  const handleClickRowUser = (user) => {
+    setClickedRowUser(user);
+  };
 
   return (
     <div className="findFriends_container">
       <div className="columnFindFriends">
         <FiltersBar getFilters={getFilters} />
         <div className="data_list">
-          <RowUser />
+          <RowUser handleClickRowUser={handleClickRowUser} />
         </div>
       </div>
 
       <div className="columnFindFriends">
-        <div className="profile_details bg_rectangle">
-          <div id="photos_profile">
-            <PhotoUserDetailsFind />
-            <PhotoUserDetailsFind />
-            <PhotoUserDetailsFind />
-            <PhotoUserDetailsFind />
-          </div>
-          <div id="detailsAndComments">
-            <div id="detailsType">
-              <span>name:</span>
-              <span>age:</span>
-              <span>location:</span>
-              <span>avg pace:</span>
-              <span>distance range:</span>
-            </div>
-            <div id="detailsData">
-              <span>Maciej</span>
-              <span>24</span>
-              <span>Poznań</span>
-              <span>18-22km/h</span>
-              <span>30-60km</span>
-            </div>
-            <div id="commentsInProfileDetails">
-              <span>comments</span>
-              <div id="commentsHole">
-                <CommentRow />
-                <CommentRow />
-                <CommentRow />
-                <CommentRow />
-                <CommentRow />
-              </div>
-            </div>
-          </div>
-        </div>
+        {clickedRowUser ? <ProfileDetailsUser user={clickedRowUser} /> : <></>}
       </div>
     </div>
   );
