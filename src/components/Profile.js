@@ -1,13 +1,60 @@
 import { FaUser } from "react-icons/fa";
 import { useState } from "react";
+import { useCookies } from 'react-cookie';
+import axios from "axios";
+
 
 const Profile = () => {
-  const [description, setDescripton] = useState(null);
+  const [cookies, setCookie, removeCookie] = useCookies(null)
   const [isFocus, setIsFocus] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
-  const [userName, setUserName] = useState("Name");
-  const [userAge, setUserAge] = useState("Age");
-  const [userLocation, setUserLocation] = useState(null);
+  const { userData, setUserData} = useState({
+    user_id: cookies.UserId,
+    email: cookies.Email,
+    userLocation: '',
+    description: '',
+    userRangeStart: '',
+    userRangeEnd: '',
+    userAverangePaceStart: '22',
+    userAverangePaceEnd: '22',
+  })
+  // const [userLocation, setUserLocation] = useState(null);
+  // const [description, setDescripton] = useState(null);
+  // const [userRangeStart, setUserRangeStart] = useState(null);
+  // const [userRangeEnd, setUserRangeEnd] = useState(null);
+  // const [userAverangePaceStart, setUserAverangePaceStart] = useState(null);
+  // const [userAverangePaceEnd, setUserAverangePaceEnd] = useState(null);
+ 
+  // constructor(props) {
+  //   super(props);
+  //   this.handleChange = this.handleChange.bind(this);
+  // }
+  
+  const handleChange = (e) => {
+    const value = e.target.value
+    const name = e.target.name  
+    console.log (value + name)
+
+    setUserData((prevState) => ({
+      ...prevState,
+      [name] : value 
+    }))
+  }
+
+  const handleSaveChanges = async (e) => {
+    e.preventDefault()
+    try {
+        const response = await axios.put('http://localhost:8000/users', {userData})
+        const success = response.satusCode === 200
+        if (success) console.log('saved')
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
+
+
+    
 
   const handleClick = (event) => {
     let buttonClass = event.target.className;
@@ -58,13 +105,19 @@ const Profile = () => {
             <input
               className="inputRange"
               type="number"
+              name="userAverangePaceStart"
               placeholder="22"
+              value={userData.userAverangePaceStart}
+              onChange={handleChange}
             ></input>
             <div className="rangeMinus">-</div>
             <input
               className="inputRange"
               type="number"
+              name="userAverangePaceEnd"
               placeholder="22"
+              value={userData.userAverangePaceEnd}
+              onChange={handleChange}
             ></input>
           </div>
         </div>
@@ -72,36 +125,42 @@ const Profile = () => {
         <div id="collumn_data_profile_center">
           <div
             className="user_details"
+            id="userName"
             type="text"
             name="userName"
             placeholder="userName"
             required="true"
-            onChange={(e) => setUserName(e.target.value)}
+            value={"Mati"}
+            // onChange={handleChanges}
           >
-            {userName}
+            {/* {userName} */}
           </div>
 
           <div className="user_details_type">name</div>
           <div
             className="user_details"
+            id="userAge"
             type="text"
             name="userAge"
             required={true}
             placeholder="userAge"
-            onChange={(e) => setUserAge(e.target.value)}
+            value={"24"}
+            onChange={handleChange}
           >
-            {userAge}
+            {/* {userAge} */}
           </div>
 
           <div className="user_details_type">age</div>
           <div className="rangeFilter" id="user_details_type_location_1">
             <input
               className="inputLocation"
+              id="userLocation"
               type="text"
               name="userLocation"
               required={true}
               placeholder="Warsaw"
-              onChange={(e) => setUserLocation(e.target.value)}
+              value={userData.userLocation}
+              onChange={handleChange}
             ></input>
           </div>
           <div className="user_details_type" id="user_details_type_location_2">
@@ -123,13 +182,19 @@ const Profile = () => {
             <input
               className="inputRange"
               type="number"
+              name="userRangeStart"
               placeholder="22"
+              value={userData.userRangeStart}
+              onChange={handleChange}
             ></input>
             <div className="rangeMinus">-</div>
             <input
               className="inputRange"
               type="number"
+              name="userRangeEnd"
               placeholder="22"
+              value={userData.userRangeEnd}
+              onChange={handleChange}
             ></input>
           </div>
         </div>
@@ -139,17 +204,19 @@ const Profile = () => {
         <div className="description_profile_title">description</div>
         <textarea
           className="description_rowUser"
-          id="decription_rowUser_main_profile"
+          id="description_rowUser_main_profile"
+          name="userDescription"
           type="text"
           placeholder="Something about you"
-          onChange={(e) => setDescripton(e.target.value)}
+          value={userData.description}
+          onChange={handleChange}
         >
-          {description}
+          {/* {description} */}
         </textarea>
       </div>
 
       <div className="edit_details_button">
-        <button className="button_curved" id="save_changes_profile">
+        <button className="button_curved" id="save_changes_profile" onClick={handleSaveChanges}>
           SAVE CHANGES
         </button>
       </div>
