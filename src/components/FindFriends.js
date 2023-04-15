@@ -1,10 +1,11 @@
 import RowUser from "./RowUser";
 import FiltersBar from "./FiltersBar";
 import ProfileDetailsUser from "./ProfileDetailsUser";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const FindFriends = () => {
   const [clickedRowUser, setClickedRowUser] = useState();
+  const [filtersObj, setFiltersObj] = useState({});
   let filterArrays;
   const getFilters = (data) => {
     filterArrays = Object.keys(data).map((key) => [key, data[key]]);

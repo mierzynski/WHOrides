@@ -7,6 +7,7 @@ import Contact from "../components/Contact";
 import Profile from "../components/Profile";
 import FindFriends from "../components/FindFriends";
 import { useCookies } from "react-cookie";
+import ChatPage from "../components/ChatPage";
 
 const Home = (props) => {
   const content = props.content;
@@ -44,6 +45,8 @@ const Home = (props) => {
             return <Profile />;
           } else if (content === "find_friends") {
             return <FindFriends />;
+          } else if (content === "chat") {
+            return <ChatPage />;
           } else {
             return <NotLoggedContent />;
           }
