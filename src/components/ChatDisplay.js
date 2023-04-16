@@ -1,23 +1,42 @@
 import { FaTimes } from "react-icons/fa";
-import { useState } from "react";
 import Chat from "./Chat";
 import ChatInput from "./ChatInput";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const ChatDisplay = ({ chat }) => {
-  const [messages, setMessages] = useState(chat.messages);
+  const messages = [];
+  const [currentChat, setCurrentChat] = useState(chat);
 
-  // messages?.forEach((message) => {
-  //   const formattedMessage = {};
-  //   formattedMessage["name"] = user?.first_name;
-  //   formattedMessage["img"] = user?.url;
-  //   formattedMessage["message"] = message.message;
-  //   formattedMessage["timestamp"] = message.timestamp;
-  //   messages.push(formattedMessage);
-  // });
+  const updateChat = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/currentchat", {
+        params: { chatId: chat.chatId },
+      });
+      if (response.data) {
+        setCurrentChat(response.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // const descendingOrderMessages = messages?.sort((a, b) =>
-  //   a.timestamp.localeCompare(b.timestamp)
-  // );
+  useEffect(() => {
+    updateChat();
+  }, []);
+
+  currentChat.messages?.forEach((message) => {
+    const formattedMessage = {};
+    formattedMessage["sender_id"] = message.sender_id;
+    formattedMessage["name"] = message.sender_name;
+    formattedMessage["message"] = message.msg;
+    formattedMessage["timestamp"] = message.date;
+    messages.push(formattedMessage);
+  });
+
+  const descendingOrderMessages = messages?.sort((a, b) =>
+    a.timestamp.localeCompare(b.timestamp)
+  );
 
   return (
     <>
@@ -26,13 +45,8 @@ const ChatDisplay = ({ chat }) => {
           <span>Chat</span>
           <FaTimes id="closeWindow" />
         </div>
-        <Chat messages={messages} />
-        <ChatInput
-        // user={user}
-        // clickedUser={clickedUser}
-        // getUserMessages={getUsersMessages}
-        // getClickedUsersMessages={getClickedUsersMessages}
-        />
+        <Chat descendingOrderMessages={descendingOrderMessages} />
+        <ChatInput chatId={chat.chatId} updateChat={updateChat} />
       </div>
     </>
   );

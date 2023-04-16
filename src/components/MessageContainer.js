@@ -1,5 +1,4 @@
 const MessageContainer = ({ isLoggedUser, name, message }) => {
-  console.log(message);
   return (
     <>
       {isLoggedUser ? (

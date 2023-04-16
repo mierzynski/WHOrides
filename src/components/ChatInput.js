@@ -1,28 +1,24 @@
 import { useState } from "react";
+import { useCookies } from "react-cookie";
 import axios from "axios";
 
-const ChatInput = ({
-  user,
-  clickedUser,
-  getUserMessages,
-  getClickedUsersMessages,
-}) => {
+const ChatInput = ({ chatId, updateChat }) => {
   const [textArea, setTextArea] = useState("");
-  const userId = user?.user_id;
-  const clickedUserId = clickedUser?.user_id;
+  const [cookies, setCookie, removeCookie] = useCookies(null);
+  const userId = cookies.UserId;
 
   const addMessage = async () => {
     const message = {
-      timestamp: new Date().toISOString(),
-      from_userId: userId,
-      to_userId: clickedUserId,
+      date: new Date().toISOString(),
+      sender_id: userId,
+      sender_name: "Mati",
+      chatId: chatId,
       message: textArea,
     };
 
     try {
       await axios.post("http://localhost:8000/message", { message });
-      getUserMessages();
-      getClickedUsersMessages();
+      updateChat();
       setTextArea("");
     } catch (error) {
       console.log(error);

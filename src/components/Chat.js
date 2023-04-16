@@ -2,43 +2,32 @@ import { useState } from "react";
 import MessageContainer from "./MessageContainer";
 import { useCookies } from "react-cookie";
 
-const Chat = ({ messages }) => {
+const Chat = ({ descendingOrderMessages }) => {
   const [cookies, setCookie, removeCookie] = useCookies(null);
   const user = cookies.UserId;
 
-  // var result = messages.map((message) => ({
-  //   sender: message.sender,
-  //   msg: message.msg,
-  // }));
-  // console.log(result);
-
   return (
-    <>
-      <div className="chatContainer">
-        {messages.map((message, index) => {
-          {
-            message.sender == user ? (
-              <MessageContainer
-                isLoggedUser={true}
-                name={message.sender}
-                message={message.msg}
-              />
-            ) : (
-              <MessageContainer
-                isLoggedUser={false}
-                name={message.sender}
-                message={message.msg}
-              />
-            );
-          }
-        })}
-        {/* <MessageContainer
-          isLoggedUser={true}
-          name={"Maciej"}
-          message={messages[0].msg}
-        /> */}
-      </div>
-    </>
+    <div className="chatContainer">
+      {descendingOrderMessages.map((message, _index) => (
+        <>
+          {message.sender_id == user ? (
+            <MessageContainer
+              key={_index}
+              isLoggedUser={true}
+              name={message.name}
+              message={message.message}
+            />
+          ) : (
+            <MessageContainer
+              key={_index}
+              isLoggedUser={false}
+              name={message.name}
+              message={message.message}
+            />
+          )}
+        </>
+      ))}
+    </div>
   );
 };
 
