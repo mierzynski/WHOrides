@@ -1004,3 +1004,58 @@ textarea{
   font-size: 0.688rem;
   margin-right: 0.438rem;
 }
+
+.chatWindow {
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80%;
+  width: 80%;
+  padding: 0px;
+}
+
+.chatHeader {
+  background-color: #D1FF87;
+  width: 100%;
+  border-bottom: 2px solid #000000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chatHeader span {
+  font-family: 'Chakra Petch';
+  font-weight: 600;
+  font-size: 1.75rem;
+  margin-left: 1rem;
+}
+
+#closeWindow {
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+}
+
+.chatContainer {
+  background-color: #8B8B8B;
+  height: 75%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.messageContainer {
+  width: 100%;
+}
+
+.messageLoggedUser {
+  background-color: #D1FF87;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  max-width: 70%;
+  padding: 0.2rem;
+  font-family: 'Chakra Petch';
+  font-weight: 400;
+  font-size: 1rem;
+  text-align: right;
+}

@@ -1,20 +1,13 @@
-const Chat = ({ descendingOrderMessages }) => {
+const Chat = ({ messages }) => {
   return (
-    <>
-      <div className="chat-display">
-        {descendingOrderMessages.map((message, _index) => (
-          <div key={_index}>
-            <div className="chat-message-header">
-              <div className="img-container">
-                <img src={message.img} alt={message.name + " profile"} />
-              </div>
-              <p>{message.name}</p>
-            </div>
-            <p>{message.message}</p>
-          </div>
-        ))}
+    <div className="chatContainer">
+      <div className="messageContainer">
+        <div className="messageLoggedUser">Hej, co u Ciebie?</div>
       </div>
-    </>
+      <div className="messageContainer">
+        <div className="messageCorresponder">Cześć, dobrze</div>
+      </div>
+    </div>
   );
 };
 

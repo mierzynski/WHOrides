@@ -31,13 +31,13 @@ const ChatInput = ({
 
   return (
     <div className="chat-input">
-      <textarea
+      {/* <textarea
         value={textArea}
         onChange={(e) => setTextArea(e.target.value)}
       />
       <button className="secondary-button" onClick={addMessage}>
         Submit
-      </button>
+      </button> */}
     </div>
   );
 };

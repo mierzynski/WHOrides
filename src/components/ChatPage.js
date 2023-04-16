@@ -37,7 +37,7 @@ const Chat = () => {
       </div>
 
       <div className="columnFindFriends">
-        {clickedChatRow ? <ChatDisplay chatId={clickedChatRow} /> : <></>}
+        {clickedChatRow ? <ChatDisplay chat={clickedChatRow} /> : <></>}
       </div>
     </div>
   );
