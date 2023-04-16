@@ -1,6 +1,7 @@
 import { FaTimes } from "react-icons/fa";
 import { useState } from "react";
 import Chat from "./Chat";
+import ChatInput from "./ChatInput";
 
 const ChatDisplay = ({ chat }) => {
   const [messages, setMessages] = useState(chat.messages);
@@ -26,12 +27,12 @@ const ChatDisplay = ({ chat }) => {
           <FaTimes id="closeWindow" />
         </div>
         <Chat messages={messages} />
-        {/* <ChatInput
-        user={user}
-        clickedUser={clickedUser}
-        getUserMessages={getUsersMessages}
-        getClickedUsersMessages={getClickedUsersMessages}
-      /> */}
+        <ChatInput
+        // user={user}
+        // clickedUser={clickedUser}
+        // getUserMessages={getUsersMessages}
+        // getClickedUsersMessages={getClickedUsersMessages}
+        />
       </div>
     </>
   );

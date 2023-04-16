@@ -1037,15 +1037,24 @@ textarea{
 }
 
 .chatContainer {
-  background-color: #8B8B8B;
   height: 75%;
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.messageContainer {
+.messageContainerLoggedUser {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.messageAuthor {
+  font-family: 'Chakra Petch';
+  font-weight: 400;
+  font-size: 1rem;
+  margin: 0rem 1.8rem;
 }
 
 .messageLoggedUser {
@@ -1053,9 +1062,59 @@ textarea{
   border: 2px solid #000000;
   border-radius: 5px;
   max-width: 70%;
-  padding: 0.2rem;
+  padding: 0.5rem 0.8rem;
+  margin-right: 1.375rem;
+  font-family: 'Chakra Petch';
+  font-weight: 400;
+  font-size: 0.8rem;
+  text-align: right;
+}
+
+.messageContainerCorrespondingUser {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.messageCorrespondingUser {
+  background-color: #ECECEC;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  max-width: 70%;
+  padding: 0.5rem 0.8rem;
+  margin-left: 1.375rem;
+  font-family: 'Chakra Petch';
+  font-weight: 400;
+  font-size: 0.8rem;
+  text-align: right;
+}
+
+.chat_input {
+  background: #ECECEC;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  width: 90%;
+  height: 10%;
+  display: flex;
+}
+
+.sendMessage_button {
+  background: #D1FF87;
+  border-width: 0px 2px 0px 0px;
+  border-radius: 5px 0px 0px 5px;
+  font-family: 'Chakra Petch';
+  font-weight: 600;
+  font-size: 1.75rem;
+}
+
+#textAreaMessage {
+  border: none;
+  background-color: transparent;
+  width: 100%;
   font-family: 'Chakra Petch';
   font-weight: 400;
   font-size: 1rem;
-  text-align: right;
+  text-align: left;
+  padding: 0.4rem;
 }
