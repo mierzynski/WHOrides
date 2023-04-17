@@ -1037,11 +1037,12 @@ textarea{
 }
 
 .chatContainer {
-  height: 75%;
+  height: 19rem;
   width: 100%;
   display: flex;
   overflow-y: scroll;
   flex-direction: column;
+  padding-bottom: 4px;
 }
 
 .messageContainerLoggedUser {
@@ -1069,6 +1070,7 @@ textarea{
   font-weight: 400;
   font-size: 0.8rem;
   text-align: right;
+  word-break:break-all;
 }
 
 .messageContainerCorrespondingUser {
@@ -1089,7 +1091,7 @@ textarea{
   font-weight: 400;
   font-size: 0.8rem;
   text-align: right;
-  color: #000000;
+  word-break:break-all;
 }
 
 .chat_input {
