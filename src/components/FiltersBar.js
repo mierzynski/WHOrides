@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const FiltersBar = ({ getFilters }) => {
+const FiltersBar = ({ setFilters, refreshResults }) => {
   const [ageMin, setAgeMin] = useState(18);
   const [ageMax, setAgeMax] = useState(100);
   const [paceMin, setPaceMin] = useState(null);
@@ -28,7 +28,6 @@ const FiltersBar = ({ getFilters }) => {
     birth_max: currentYear - ageMax,
     location: location,
   };
-  getFilters(filters);
 
   const handleClick = (event) => {
     let buttonClass = event.target.className;
@@ -152,6 +151,13 @@ const FiltersBar = ({ getFilters }) => {
             placeholder="22"
             onChange={(e) => setDistanceMax(e.target.value)}
           ></input>
+          <button
+            onClick={(e) => {
+              setFilters(filters);
+            }}
+          >
+            search
+          </button>
         </div>
         {/* <button onClick={(e) => getFilters(filters)}>SEARCH</button> */}
       </div>

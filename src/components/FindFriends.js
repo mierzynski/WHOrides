@@ -2,15 +2,11 @@ import RowUser from "./RowUser";
 import FiltersBar from "./FiltersBar";
 import ProfileDetailsUser from "./ProfileDetailsUser";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 const FindFriends = () => {
   const [clickedRowUser, setClickedRowUser] = useState();
-  const [filtersObj, setFiltersObj] = useState({});
-  let filterArrays;
-  const getFilters = (data) => {
-    filterArrays = Object.keys(data).map((key) => [key, data[key]]);
-    return filterArrays;
-  };
+  const [filters, setFilters] = useState();
 
   const handleClickRowUser = (user) => {
     setClickedRowUser(user);
@@ -19,9 +15,12 @@ const FindFriends = () => {
   return (
     <div className="findFriends_container">
       <div className="columnFindFriends">
-        <FiltersBar getFilters={getFilters} />
+        <FiltersBar setFilters={setFilters} />
         <div className="data_list">
-          <RowUser handleClickRowUser={handleClickRowUser} />
+          <RowUser
+            handleClickRowUser={handleClickRowUser}
+            newFilters={filters}
+          />
         </div>
       </div>
 
