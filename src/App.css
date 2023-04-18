@@ -532,6 +532,10 @@ nav button:focus {
   -moz-appearance: textfield;
 }
 
+.searchButton {
+  padding: 0rem 1.5rem;
+}
+
 .inputLocation {
   margin-top: 2%;
   background-color: #D1FF87;
@@ -546,6 +550,9 @@ nav button:focus {
 /* LIST */
 .data_list {
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 3%;
   padding: 2%;
   background: linear-gradient(180deg, #FFFFFF -117.46%, rgba(217, 217, 217, 0) 100%);

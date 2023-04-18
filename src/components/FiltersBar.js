@@ -151,15 +151,15 @@ const FiltersBar = ({ setFilters, refreshResults }) => {
             placeholder="22"
             onChange={(e) => setDistanceMax(e.target.value)}
           ></input>
-          <button
-            onClick={(e) => {
-              setFilters(filters);
-            }}
-          >
-            search
-          </button>
         </div>
-        {/* <button onClick={(e) => getFilters(filters)}>SEARCH</button> */}
+        <button
+          className="searchButton button_curved"
+          onClick={(e) => {
+            setFilters(filters);
+          }}
+        >
+          SEARCH
+        </button>
       </div>
       {/* third column with filters */}
       <div className="columnFilters">

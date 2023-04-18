@@ -43,7 +43,9 @@ const RowUser = ({ handleClickRowUser, newFilters }) => {
               {user.rates.length}
               ratings)
             </div>
-            <div className="rateAndComments_userRow">10 comments</div>
+            <div className="rateAndComments_userRow">
+              {user.comments.length} comments
+            </div>
           </div>
           <div className="description_rowUser">{user.description}</div>
         </button>
