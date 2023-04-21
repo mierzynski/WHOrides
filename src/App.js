@@ -25,6 +25,9 @@ const App = () => {
           />
         )}
         {authToken && <Route path="/chat" element={<Home content="chat" />} />}
+        {authToken && (
+          <Route path="/events" element={<Home content="events" />} />
+        )}
       </Routes>
     </BrowserRouter>
   );

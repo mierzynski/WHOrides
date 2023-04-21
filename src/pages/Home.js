@@ -8,6 +8,7 @@ import Profile from "../components/Profile";
 import FindFriends from "../components/FindFriends";
 import { useCookies } from "react-cookie";
 import ChatPage from "../components/ChatPage";
+import Events from "../components/Events";
 
 const Home = (props) => {
   const content = props.content;
@@ -41,6 +42,8 @@ const Home = (props) => {
             return <About />;
           } else if (content === "contact") {
             return <Contact />;
+          } else if (content === "events") {
+            return <Events />;
           } else if (content === "profile") {
             return <Profile />;
           } else if (content === "find_friends") {

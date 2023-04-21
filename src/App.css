@@ -628,6 +628,19 @@ nav button:focus {
   width: 70%;
 }
 
+.inviteToFrfiends-background{
+  margin-top: 5px;
+  width: 70%;
+}
+
+#inviteToFriends_button{
+  background-color: #D1FF87;
+  font-family: 'Chakra Petch';
+  font-weight: 500;
+  font-size: 15px;
+  padding: 0rem 2.5rem;
+}
+
 #photos_profile {
   overflow-x: scroll;
   display: flex;
@@ -1128,4 +1141,46 @@ textarea{
   font-size: 1rem;
   text-align: left;
   padding: 0.4rem;
+}
+
+/* EVENTS */
+
+.eventsContainer{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.searchOrCreateEvents_bg{
+  width: 25%;
+}
+
+.searchOrCreate_button{
+  border: 1px solid #383838;
+  background-color: transparent;
+  font-family: 'Chakra Petch';
+  font-weight: 500;
+  font-size: 0.938rem;
+  padding: 0.625rem 1.5rem;
+}
+
+.searchOrCreate_buttonClicked{
+  border: 2px solid #000000;
+  background-color: #D1FF87;
+  font-family: 'Chakra Petch';
+  font-weight: 500;
+  font-size: 0.938rem;
+  padding: 0.625rem 1.5rem;
+}
+
+.createEventContainer {
+  width: 40%;
+}
+
+#createTitleEvent{
+  font-family: 'Chakra Petch';
+  font-weight: 600;
+  font-size: 1.5rem;
+  background-color: transparent;
+  text-align: center;
 }
