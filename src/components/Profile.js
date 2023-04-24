@@ -5,46 +5,21 @@ import axios from "axios";
 
 
 const Profile = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(null)
+  const [cookies, setCookie, removeCookie] = useCookies(null);
   const [isFocus, setIsFocus] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
-  const { userData, setUserData} = useState({
-    user_id: cookies.UserId,
-    email: cookies.Email,
-    userLocation: '',
-    description: '',
-    userRangeStart: '',
-    userRangeEnd: '',
-    userAverangePaceStart: '22',
-    userAverangePaceEnd: '22',
-  })
-  // const [userLocation, setUserLocation] = useState(null);
-  // const [description, setDescripton] = useState(null);
-  // const [userRangeStart, setUserRangeStart] = useState(null);
-  // const [userRangeEnd, setUserRangeEnd] = useState(null);
-  // const [userAverangePaceStart, setUserAverangePaceStart] = useState(null);
-  // const [userAverangePaceEnd, setUserAverangePaceEnd] = useState(null);
- 
-  // constructor(props) {
-  //   super(props);
-  //   this.handleChange = this.handleChange.bind(this);
-  // }
-  
-  const handleChange = (e) => {
-    const value = e.target.value
-    const name = e.target.name  
-    console.log (value + name)
 
-    setUserData((prevState) => ({
-      ...prevState,
-      [name] : value 
-    }))
-  }
+  const [userLocation, setUserLocation] = useState(null);
+  const [description, setDescripton] = useState(null);
+  const [userRangeStart, setUserRangeStart] = useState(null);
+  const [userRangeEnd, setUserRangeEnd] = useState(null);
+  const [userAveragePaceStart, setUserAveragePaceStart] = useState(null);
+  const [userAveragePaceEnd, setUserAveragePaceEnd] = useState(null);
 
   const handleSaveChanges = async (e) => {
     e.preventDefault()
     try {
-        const response = await axios.put('http://localhost:8000/users', {userData})
+        const response = await axios.put('http://localhost:8000/users', {userLocation, description, userRangeStart, userRangeEnd, userAveragePaceStart, userAveragePaceEnd})
         const success = response.satusCode === 200
         if (success) console.log('saved')
     }
@@ -52,9 +27,6 @@ const Profile = () => {
       console.log(error)
     }
   }
-
-
-    
 
   const handleClick = (event) => {
     let buttonClass = event.target.className;
@@ -79,6 +51,7 @@ const Profile = () => {
 
   return (
     <div className="bg_rectangle">
+      {/* ZDJĘCIA */}
       <div className="photos_profile_row">
         <FaUser className="userFa avatar_rowUser profile_avatar" />
         <FaUser
@@ -105,23 +78,22 @@ const Profile = () => {
             <input
               className="inputRange"
               type="number"
-              name="userAverangePaceStart"
+              name="userAveragePaceStart"
               placeholder="22"
-              value={userData.userAverangePaceStart}
-              onChange={handleChange}
+              onChange={(e) => userAveragePaceStart(e.target.value)}
             ></input>
             <div className="rangeMinus">-</div>
             <input
               className="inputRange"
               type="number"
-              name="userAverangePaceEnd"
+              name="userAveragePaceEnd"
               placeholder="22"
-              value={userData.userAverangePaceEnd}
-              onChange={handleChange}
+              onChange={(e) => userAveragePaceEnd(e.target.value)}
             ></input>
           </div>
         </div>
 
+        {/* ŚRODKOWA KOLUMNA */}
         <div id="collumn_data_profile_center">
           <div
             className="user_details"
@@ -145,7 +117,7 @@ const Profile = () => {
             required={true}
             placeholder="userAge"
             value={"24"}
-            onChange={handleChange}
+            // onChange={handleChange}
           >
             {/* {userAge} */}
           </div>
@@ -159,8 +131,7 @@ const Profile = () => {
               name="userLocation"
               required={true}
               placeholder="Warsaw"
-              value={userData.userLocation}
-              onChange={handleChange}
+              onChange={(e) => userLocation(e.target.value)}
             ></input>
           </div>
           <div className="user_details_type" id="user_details_type_location_2">
@@ -168,6 +139,7 @@ const Profile = () => {
           </div>
         </div>
 
+        {/* PRAWA KOLUMNA */}
         <div id="collumn_data_profile_right">
           <div className="titleOfFilter title_details_right">surface types</div>
           <div className="clicableTypes">
@@ -184,8 +156,7 @@ const Profile = () => {
               type="number"
               name="userRangeStart"
               placeholder="22"
-              value={userData.userRangeStart}
-              onChange={handleChange}
+              onChange={(e) => userRangeStart(e.target.value)}
             ></input>
             <div className="rangeMinus">-</div>
             <input
@@ -193,13 +164,13 @@ const Profile = () => {
               type="number"
               name="userRangeEnd"
               placeholder="22"
-              value={userData.userRangeEnd}
-              onChange={handleChange}
+              onChange={(e) => userRangeEnd(e.target.value)}
             ></input>
           </div>
         </div>
       </div>
 
+      {/* OPIS */}
       <div className="description_profile_row">
         <div className="description_profile_title">description</div>
         <textarea
@@ -208,9 +179,8 @@ const Profile = () => {
           name="userDescription"
           type="text"
           placeholder="Something about you"
-          value={userData.description}
-          onChange={handleChange}
-        >
+          onChange={(e) => description(e.target.value)}
+          >
           {/* {description} */}
         </textarea>
       </div>
