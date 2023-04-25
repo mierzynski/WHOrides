@@ -80,7 +80,7 @@ const Profile = () => {
               type="number"
               name="userAveragePaceStart"
               placeholder="22"
-              onChange={(e) => userAveragePaceStart(e.target.value)}
+              onChange={(e) => setUserAveragePaceStart(e.target.value)}
             ></input>
             <div className="rangeMinus">-</div>
             <input
@@ -88,7 +88,7 @@ const Profile = () => {
               type="number"
               name="userAveragePaceEnd"
               placeholder="22"
-              onChange={(e) => userAveragePaceEnd(e.target.value)}
+              onChange={(e) => setUserAveragePaceEnd(e.target.value)}
             ></input>
           </div>
         </div>
@@ -131,7 +131,7 @@ const Profile = () => {
               name="userLocation"
               required={true}
               placeholder="Warsaw"
-              onChange={(e) => userLocation(e.target.value)}
+              onChange={(e) => setUserLocation(e.target.value)}
             ></input>
           </div>
           <div className="user_details_type" id="user_details_type_location_2">
@@ -156,7 +156,7 @@ const Profile = () => {
               type="number"
               name="userRangeStart"
               placeholder="22"
-              onChange={(e) => userRangeStart(e.target.value)}
+              onChange={(e) => setUserRangeStart(e.target.value)}
             ></input>
             <div className="rangeMinus">-</div>
             <input
@@ -164,7 +164,7 @@ const Profile = () => {
               type="number"
               name="userRangeEnd"
               placeholder="22"
-              onChange={(e) => userRangeEnd(e.target.value)}
+              onChange={(e) => setUserRangeEnd(e.target.value)}
             ></input>
           </div>
         </div>
@@ -179,7 +179,7 @@ const Profile = () => {
           name="userDescription"
           type="text"
           placeholder="Something about you"
-          onChange={(e) => description(e.target.value)}
+          onChange={(e) => setDescripton(e.target.value)}
           >
           {/* {description} */}
         </textarea>
