@@ -15,11 +15,13 @@ const Profile = () => {
   const [userRangeEnd, setUserRangeEnd] = useState(null);
   const [userAveragePaceStart, setUserAveragePaceStart] = useState(null);
   const [userAveragePaceEnd, setUserAveragePaceEnd] = useState(null);
+  const user = cookies.UserId;
 
+  // PRZYCISK SAVE
   const handleSaveChanges = async (e) => {
     e.preventDefault()
     try {
-        const response = await axios.put('http://localhost:8000/users', {userLocation, description, userRangeStart, userRangeEnd, userAveragePaceStart, userAveragePaceEnd})
+        const response = await axios.put('http://localhost:8000/users', {user, userLocation, description, userRangeStart, userRangeEnd, userAveragePaceStart, userAveragePaceEnd})
         const success = response.satusCode === 200
         if (success) console.log('saved')
     }
@@ -105,6 +107,7 @@ const Profile = () => {
             value={"Mati"}
             // onChange={handleChanges}
           >
+            mati
             {/* {userName} */}
           </div>
 
@@ -119,6 +122,7 @@ const Profile = () => {
             value={"24"}
             // onChange={handleChange}
           >
+            19
             {/* {userAge} */}
           </div>
 
