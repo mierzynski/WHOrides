@@ -3,8 +3,10 @@ import PhotoUserDetailsFind from "./PhotoUserDetailsFind";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
+import { useState } from "react";
 
 const ProfileDetailsUser = (props) => {
+  const [chat, setChat] = useState();
   const user = props.user;
   const currentYear = new Date().getFullYear();
   const navigate = useNavigate();
@@ -26,6 +28,9 @@ const ProfileDetailsUser = (props) => {
       const response = await axios.post("http://localhost:8000/newchat", {
         newChat,
       });
+      setChat(response.data.chat);
+      navigate("/chat", { state: { chat: response.data.chat } });
+      console.log(chat);
     } catch (error) {
       console.log(error);
     }
@@ -40,7 +45,6 @@ const ProfileDetailsUser = (props) => {
   };
 
   const inviteFriend_onClick = () => {
-    navigate("/chat");
     inviteFriend();
   };
 

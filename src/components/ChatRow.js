@@ -39,9 +39,13 @@ const ChatRow = ({ user, handleClickChatRow }) => {
                 ? chat.members_name[1]
                 : chat.members_name[0]}
             </div>
-            <div className="chatRowLastMessage">Hej, co u Ciebie?</div>
+            <div className="chatRowLastMessage">
+              {chat.messages[chat.messages.length - 1].msg}
+            </div>
           </div>
-          <div className="chatRowDate">01.04.2023</div>
+          <div className="chatRowDate">
+            {chat.messages[chat.messages.length - 1].date}
+          </div>
         </button>
       ))}
     </>

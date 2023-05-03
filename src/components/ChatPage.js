@@ -1,25 +1,24 @@
 import FriendAvatar from "./FriendAvatar";
 import ChatRow from "./ChatRow";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ChatDisplay from "./ChatDisplay";
 import { useCookies } from "react-cookie";
+import { useLocation } from "react-router-dom";
 
 const Chat = () => {
-  const [clickedChatRow, setClickedChatRow] = useState();
+  const { state } = useLocation();
+  let chatFromNav;
+  if (state) {
+    const { chat } = state;
+    chatFromNav = chat;
+  }
+  const [clickedChatRow, setClickedChatRow] = useState(chatFromNav);
   const [cookies, setCookie, removeCookie] = useCookies(null);
   const user = cookies.UserId;
-
-  // const showChatDisplay = () => {
-  //   return <ChatDisplay chat={clickedChatRow} />;
-  // };
 
   const handleClickChatRow = (chat) => {
     setClickedChatRow(chat);
   };
-
-  // useEffect(() => {
-  //   showChatDisplay();
-  // }, [clickedChatRow]);
 
   return (
     <div className="findFriends_container">
@@ -40,7 +39,6 @@ const Chat = () => {
       <div className="columnFindFriends">
         {clickedChatRow ? <ChatDisplay chat={clickedChatRow} /> : <></>}
       </div>
-      {/* <div className="columnFindFriends">{showChatDisplay}</div> */}
     </div>
   );
 };
