@@ -1,11 +1,14 @@
 import { FaUser } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useCookies } from "react-cookie";
 import axios from "axios";
 
 const RowUser = ({ handleClickRowUser, newFilters }) => {
   const [users, setUsers] = useState(null);
   const [filters, setFilters] = useState();
   const currentYear = new Date().getFullYear();
+  const [cookies, setCookie, removeCookie] = useCookies(null);
+  const user = cookies.UserId;
 
   const getUsers = async () => {
     try {
@@ -22,6 +25,14 @@ const RowUser = ({ handleClickRowUser, newFilters }) => {
   if (newFilters && newFilters != filters) {
     getUsers();
   }
+
+  const isMyFriends = (array) => {
+    if (array) {
+      if (array.includes(user)) {
+        return <span className="yourFriendTxt_userRow">(friend)</span>;
+      }
+    }
+  };
 
   return (
     <>
@@ -46,6 +57,7 @@ const RowUser = ({ handleClickRowUser, newFilters }) => {
             <div className="rateAndComments_userRow">
               {user.comments.length} comments
             </div>
+            {isMyFriends(user.friends)}
           </div>
           <div className="description_rowUser">{user.description}</div>
         </button>

@@ -6,22 +6,25 @@ const ChatInput = ({ chatId, updateChat }) => {
   const [textArea, setTextArea] = useState("");
   const [cookies, setCookie, removeCookie] = useCookies(null);
   const userId = cookies.UserId;
+  const userName = cookies.UserName;
 
   const addMessage = async () => {
-    const message = {
-      date: new Date().toISOString(),
-      sender_id: userId,
-      sender_name: "Mati",
-      chatId: chatId,
-      message: textArea,
-    };
+    if (textArea) {
+      const message = {
+        date: new Date().toISOString(),
+        sender_id: userId,
+        sender_name: userName,
+        chatId: chatId,
+        message: textArea,
+      };
 
-    try {
-      await axios.post("http://localhost:8000/message", { message });
-      updateChat();
-      setTextArea("");
-    } catch (error) {
-      console.log(error);
+      try {
+        await axios.post("http://localhost:8000/message", { message });
+        updateChat();
+        setTextArea("");
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 

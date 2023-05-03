@@ -9,6 +9,7 @@ const Navbar = (props) => {
   const logout = () => {
     removeCookie("UserId", cookies.UserId);
     removeCookie("AuthToken", cookies.AuthToken);
+    removeCookie("UserName", cookies.UserName);
     navigate("/");
     window.location.reload();
   };

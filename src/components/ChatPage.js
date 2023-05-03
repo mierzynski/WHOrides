@@ -1,31 +1,32 @@
 import FriendAvatar from "./FriendAvatar";
 import ChatRow from "./ChatRow";
-import { useState } from "react";
-import { useCookies } from "react-cookie";
+import { useState, useEffect } from "react";
 import ChatDisplay from "./ChatDisplay";
+import { useCookies } from "react-cookie";
 
 const Chat = () => {
   const [clickedChatRow, setClickedChatRow] = useState();
   const [cookies, setCookie, removeCookie] = useCookies(null);
   const user = cookies.UserId;
 
-  const handleClickChatRow = (id) => {
-    setClickedChatRow(id);
+  // const showChatDisplay = () => {
+  //   return <ChatDisplay chat={clickedChatRow} />;
+  // };
+
+  const handleClickChatRow = (chat) => {
+    setClickedChatRow(chat);
   };
+
+  // useEffect(() => {
+  //   showChatDisplay();
+  // }, [clickedChatRow]);
 
   return (
     <div className="findFriends_container">
       <div className="columnFindFriends">
         <div className="chatFriends bg_rectangle">
+          <span>friends</span>
           <div className="friendsRectangle">
-            <FriendAvatar />
-            <FriendAvatar />
-            <FriendAvatar />
-            <FriendAvatar />
-            <FriendAvatar />
-            <FriendAvatar />
-            <FriendAvatar />
-            <FriendAvatar />
             <FriendAvatar />
           </div>
         </div>
@@ -39,6 +40,7 @@ const Chat = () => {
       <div className="columnFindFriends">
         {clickedChatRow ? <ChatDisplay chat={clickedChatRow} /> : <></>}
       </div>
+      {/* <div className="columnFindFriends">{showChatDisplay}</div> */}
     </div>
   );
 };

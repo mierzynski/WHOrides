@@ -23,7 +23,7 @@ const ChatDisplay = ({ chat }) => {
 
   useEffect(() => {
     updateChat();
-  }, []);
+  }, [chat]);
 
   currentChat.messages?.forEach((message) => {
     const formattedMessage = {};

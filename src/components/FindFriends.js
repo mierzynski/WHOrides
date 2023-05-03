@@ -1,8 +1,7 @@
 import RowUser from "./RowUser";
 import FiltersBar from "./FiltersBar";
 import ProfileDetailsUser from "./ProfileDetailsUser";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState } from "react";
 
 const FindFriends = () => {
   const [clickedRowUser, setClickedRowUser] = useState();
