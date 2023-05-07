@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 const ChatRow = ({ user, handleClickChatRow }) => {
   const [chats, setChats] = useState(null);
+  const actualDate = new Date();
 
   const getAllChats = async () => {
     try {
@@ -40,11 +41,16 @@ const ChatRow = ({ user, handleClickChatRow }) => {
                 : chat.members_name[0]}
             </div>
             <div className="chatRowLastMessage">
-              {chat.messages[chat.messages.length - 1].msg}
+              {chat.messages.length < 1
+                ? ""
+                : chat.messages[chat.messages.length - 1].msg}
             </div>
           </div>
           <div className="chatRowDate">
-            {chat.messages[chat.messages.length - 1].date}
+            {chat.messages.length < 1
+              ? ""
+              : actualDate -
+                new Date(chat.messages[chat.messages.length - 1].date)}
           </div>
         </button>
       ))}

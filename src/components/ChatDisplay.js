@@ -3,10 +3,32 @@ import Chat from "./Chat";
 import ChatInput from "./ChatInput";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 
-const ChatDisplay = ({ chat }) => {
+const ChatDisplay = ({ chat, correspondingUserId }) => {
   const messages = [];
   const [currentChat, setCurrentChat] = useState(chat);
+  const [isPendingFriend, setIsPendingFriend] = useState(false);
+  const [cookies, setCookie, removeCookie] = useCookies(null);
+  const user = cookies.UserId;
+  // const [friendId, setFriendId] = useState(correspondingUserId);
+
+  const isPendingFriendFunction = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/friends", {
+        params: { userId: user },
+      });
+      response.data.pendingFriends.forEach(function (friend) {
+        if (friend.user_id == correspondingUserId) {
+          setIsPendingFriend(true);
+        } else {
+          setIsPendingFriend(false);
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const updateChat = async () => {
     try {
@@ -15,7 +37,19 @@ const ChatDisplay = ({ chat }) => {
       });
       if (response.data) {
         setCurrentChat(response.data);
+        // console.log(currentChat.members_id);
+        // if (currentChat.members_id[0] == user) {
+        //   setFriendId(currentChat.members_id[1]);
+        //   console.log(currentChat.members_id[1]);
+        // } else {
+        //   setFriendId(currentChat.members_id[0]);
+        //   console.log(currentChat.members_id[0]);
+        // }
       }
+      // console.log(friendId);
+      // if (friendId) {
+      //   isPendingFriendFunction();
+      // }
     } catch (error) {
       console.log(error);
     }
@@ -23,7 +57,8 @@ const ChatDisplay = ({ chat }) => {
 
   useEffect(() => {
     updateChat();
-  }, [chat]);
+    isPendingFriendFunction();
+  }, [chat, correspondingUserId]);
 
   currentChat.messages?.forEach((message) => {
     const formattedMessage = {};
@@ -45,7 +80,11 @@ const ChatDisplay = ({ chat }) => {
           <span>Chat</span>
           <FaTimes id="closeWindow" />
         </div>
-        <Chat descendingOrderMessages={descendingOrderMessages} />
+        <Chat
+          isPendingFriend={isPendingFriend}
+          friendId={correspondingUserId}
+          descendingOrderMessages={descendingOrderMessages}
+        />
         <ChatInput chatId={chat.chatId} updateChat={updateChat} />
       </div>
     </>

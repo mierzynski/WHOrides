@@ -14,10 +14,18 @@ const Chat = () => {
   }
   const [clickedChatRow, setClickedChatRow] = useState(chatFromNav);
   const [cookies, setCookie, removeCookie] = useCookies(null);
+  const [friendId, setFriendId] = useState();
   const user = cookies.UserId;
 
   const handleClickChatRow = (chat) => {
     setClickedChatRow(chat);
+    if (chat) {
+      if (chat.members_id[0] == user) {
+        setFriendId(chat.members_id[1]);
+      } else {
+        setFriendId(chat.members_id[0]);
+      }
+    }
   };
 
   return (
@@ -37,7 +45,11 @@ const Chat = () => {
       </div>
 
       <div className="columnFindFriends">
-        {clickedChatRow ? <ChatDisplay chat={clickedChatRow} /> : <></>}
+        {clickedChatRow ? (
+          <ChatDisplay chat={clickedChatRow} correspondingUserId={friendId} />
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );
