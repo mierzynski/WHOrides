@@ -8,16 +8,19 @@ const Profile = () => {
   const [cookies, setCookie, removeCookie] = useCookies(null);
   const [isFocus, setIsFocus] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
-
-  const [name, setName] = useState(null);
-  const [userLocation, setUserLocation] = useState(null);
-  const [description, setDescripton] = useState(null);
-  const [userRangeStart, setUserRangeStart] = useState(null);
-  const [userRangeEnd, setUserRangeEnd] = useState(null);
-  const [userAveragePaceStart, setUserAveragePaceStart] = useState(null);
-  const [userAveragePaceEnd, setUserAveragePaceEnd] = useState(null);
   const [user, setUser] = useState();
   const userId = cookies.UserId;
+
+  const [name, setName] = useState()
+  const [userLocation, setUserLocation] = useState();
+  const [description, setDescripton] = useState();
+  const [userRangeStart, setUserRangeStart] = useState();
+  const [userRangeEnd, setUserRangeEnd] = useState();
+  const [userAveragePaceStart, setUserAveragePaceStart] = useState();
+  const [userAveragePaceEnd, setUserAveragePaceEnd] = useState();
+ 
+
+
 
   // GET USER DATA 
   const getUserData = async (e) => {
@@ -32,13 +35,16 @@ const Profile = () => {
     }
   }
 
+
   // PRZYCISK SAVE
   const handleSaveChanges = async (e) => {
     e.preventDefault()
     try {
         const response = await axios.put('http://localhost:8000/users', {userId, userLocation, description, userRangeStart, userRangeEnd, userAveragePaceStart, userAveragePaceEnd})
         const success = response.satusCode === 200
-        window.location.reload(false);
+        // window.location.reload(false);
+        getUserData()
+        console.log(user)
         if (success) console.log('saved')
     }
     catch (error) {
@@ -71,7 +77,8 @@ const Profile = () => {
     getUserData();
   }, [])
 
-  console.log('user', user)
+  console.log(user)
+  // console.log(user.description)
 
   return (
     <div className="bg_rectangle">
@@ -125,14 +132,11 @@ const Profile = () => {
             type="text"
             name="userName"
             placeholder="userName"
-            required="true"
-            value={"Mati"}
-            // onChange={handleChanges}
-          >
-            {name}
+            required="true">
+              {/* {user.name} */}
           </div>
-
           <div className="user_details_type">name</div>
+          
           <div
             className="user_details"
             id="userAge"
@@ -146,9 +150,9 @@ const Profile = () => {
             19
             {/* {userAge} */}
           </div>
-
           <div className="user_details_type">age</div>
-          <div className="rangeFilter" id="user_details_type_location_1">
+          
+          <div className="rangeFilter"  id="user_details_type_location_1">
             <input
               className="inputLocation"
               id="userLocation"
@@ -157,7 +161,8 @@ const Profile = () => {
               required={true}
               placeholder="Warsaw"
               onChange={(e) => setUserLocation(e.target.value)}
-            ></input>
+            >
+            </input>
           </div>
           <div className="user_details_type" id="user_details_type_location_2">
             location
@@ -204,9 +209,10 @@ const Profile = () => {
           name="userDescription"
           type="text"
           placeholder="Something about you"
+          value={description}
           onChange={(e) => setDescripton(e.target.value)}
-          >
-          {/* {description} */}
+          >  
+          {/* {user.description} */}
         </textarea>
       </div>
 
