@@ -1,5 +1,5 @@
 import { FaUser } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCookies } from 'react-cookie';
 import axios from "axios";
 
@@ -9,20 +9,36 @@ const Profile = () => {
   const [isFocus, setIsFocus] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
 
+  const [name, setName] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
   const [description, setDescripton] = useState(null);
   const [userRangeStart, setUserRangeStart] = useState(null);
   const [userRangeEnd, setUserRangeEnd] = useState(null);
   const [userAveragePaceStart, setUserAveragePaceStart] = useState(null);
   const [userAveragePaceEnd, setUserAveragePaceEnd] = useState(null);
-  const user = cookies.UserId;
+  const [user, setUser] = useState();
+  const userId = cookies.UserId;
+
+  // GET USER DATA 
+  const getUserData = async (e) => {
+    try {
+      const response = await axios.get('http://localhost:8000/users', {
+        params: {userId}
+      })
+      setUser(response.data)
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
 
   // PRZYCISK SAVE
   const handleSaveChanges = async (e) => {
     e.preventDefault()
     try {
-        const response = await axios.put('http://localhost:8000/users', {user, userLocation, description, userRangeStart, userRangeEnd, userAveragePaceStart, userAveragePaceEnd})
+        const response = await axios.put('http://localhost:8000/users', {userId, userLocation, description, userRangeStart, userRangeEnd, userAveragePaceStart, userAveragePaceEnd})
         const success = response.satusCode === 200
+        window.location.reload(false);
         if (success) console.log('saved')
     }
     catch (error) {
@@ -50,6 +66,12 @@ const Profile = () => {
       </button>
     );
   };
+
+  useEffect(() => {
+    getUserData();
+  }, [])
+
+  console.log('user', user)
 
   return (
     <div className="bg_rectangle">
@@ -107,8 +129,7 @@ const Profile = () => {
             value={"Mati"}
             // onChange={handleChanges}
           >
-            mati
-            {/* {userName} */}
+            {name}
           </div>
 
           <div className="user_details_type">name</div>
