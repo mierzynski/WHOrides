@@ -647,6 +647,13 @@ nav button:focus {
   padding: 0rem 2.5rem;
 }
 
+#textAreaMessageWithInvite{
+  border: 2px solid #000000;
+  width: 80%;
+  margin-top: 5px;
+  font-family: 'Chakra Petch';
+}
+
 #photos_profile {
   overflow-x: scroll;
   display: flex;
@@ -1080,12 +1087,13 @@ textarea{
   display: flex;
   overflow-y: scroll;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   padding-bottom: 4px;
 }
 
 .friendInvitation_container{
   text-align: center;
+  margin: auto;
   width: 60%;
 }
 

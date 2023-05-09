@@ -7,6 +7,7 @@ import { useState } from "react";
 
 const ProfileDetailsUser = (props) => {
   const [chat, setChat] = useState();
+  const [textArea, setTextArea] = useState("");
   const user = props.user;
   const currentYear = new Date().getFullYear();
   const navigate = useNavigate();
@@ -17,7 +18,14 @@ const ProfileDetailsUser = (props) => {
   const inviteFriend = async () => {
     const newChat = {
       chatId: userId + ";" + user.user_id,
-      messages: [],
+      messages: [
+        {
+          date: new Date().toISOString(),
+          sender_id: userId,
+          sender_name: userName,
+          msg: textArea,
+        },
+      ],
       members_id: [userId, user.user_id],
       members_name: [userName, user.name],
     };
@@ -62,13 +70,20 @@ const ProfileDetailsUser = (props) => {
         );
       } else {
         return (
-          <button
-            className="button_curved"
-            id="inviteToFriends_button"
-            onClick={inviteFriend_onClick}
-          >
-            INVITE TO FRIENDS & SEND MESSAGE
-          </button>
+          <>
+            <button
+              className="button_curved"
+              id="inviteToFriends_button"
+              onClick={inviteFriend_onClick}
+            >
+              INVITE TO FRIENDS & SEND MESSAGE
+            </button>
+            <textarea
+              id="textAreaMessageWithInvite"
+              value={textArea}
+              onChange={(e) => setTextArea(e.target.value)}
+            />
+          </>
         );
       }
     }

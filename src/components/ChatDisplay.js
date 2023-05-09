@@ -77,7 +77,12 @@ const ChatDisplay = ({ chat, correspondingUserId }) => {
     <>
       <div className="chatWindow bg_rectangle">
         <div className="chatHeader">
-          <span>Chat</span>
+          <span>
+            Chat with{" "}
+            {chat.members_id[0] == correspondingUserId
+              ? chat.members_name[0]
+              : chat.members_name[1]}
+          </span>
           <FaTimes id="closeWindow" />
         </div>
         <Chat
