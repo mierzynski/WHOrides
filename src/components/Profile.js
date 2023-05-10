@@ -14,14 +14,12 @@ const Profile = () => {
   const [name, setName] = useState()
   const [userLocation, setUserLocation] = useState();
   const [description, setDescripton] = useState('');
-  const [userRangeStart, setUserRangeStart] = useState('');
-  const [userRangeEnd, setUserRangeEnd] = useState('');
-  const [userAveragePaceStart, setUserAveragePaceStart] = useState('');
-  const [userAveragePaceEnd, setUserAveragePaceEnd] = useState('');
- 
-
-
-
+  const [distance_min, setdistance_min] = useState('');
+  const [distance_max, setdistance_max] = useState('');
+  const [pace_min, setpace_min] = useState('');
+  const [pace_max, setpace_max] = useState('');
+  
+  
   // GET USER DATA 
   const getUserData = async (e) => {
     try {
@@ -40,7 +38,7 @@ const Profile = () => {
   const handleSaveChanges = async (e) => {
     e.preventDefault()
     try {
-        const response = await axios.put('http://localhost:8000/users', {userId, userLocation, description, userRangeStart, userRangeEnd, userAveragePaceStart, userAveragePaceEnd})
+        const response = await axios.put('http://localhost:8000/users', {userId, userLocation, description, distance_min, distance_max, pace_min, pace_max})
         const success = response.satusCode === 200
         // window.location.reload(false);
         getUserData()
@@ -52,6 +50,7 @@ const Profile = () => {
     }
   }
 
+  //przytrzymanie buttona
   const handleClick = (event) => {
     let buttonClass = event.target.className;
 
@@ -62,6 +61,7 @@ const Profile = () => {
     }
   };
 
+  //kliknięty button
   const buttonTypes = (value) => {
     return (
       <button
@@ -73,26 +73,33 @@ const Profile = () => {
     );
   };
 
+  //pobranie danych przy ładowaniu strony
   useEffect(() => {
     getUserData();
   }, [])
 
   console.log(user)
-  // console.log(user.description)
 
   return (
     <div className="bg_rectangle">
       {/* ZDJĘCIA */}
       <div className="photos_profile_row">
-        <FaUser className="userFa avatar_rowUser profile_avatar" />
-        <FaUser
+        <img src="https://cdn.pixabay.com/photo/2015/03/21/14/34/silhouette-683751_960_720.jpg" 
+        alt="img" 
+        className="userFa avatar_rowUser profile_avatar" />
+        <img
+          src="https://cdn.pixabay.com/photo/2015/03/21/14/34/silhouette-683751_960_720.jpg"
+          alt="img"
           className="userFa avatar_rowUser profile_avatar"
           id="profile_main_avatar"
+          value={user ? user.profile_photo : FaUser}
         />
-        <button className="" id="upload_photo">
+        <button className="" id="upload_photo" >
           UPLOAD PHOTO
         </button>
-        <FaUser className="userFa avatar_rowUser profile_avatar" />
+        <img src="https://cdn.pixabay.com/photo/2015/03/21/14/34/silhouette-683751_960_720.jpg" 
+        alt="img"
+        className="userFa avatar_rowUser profile_avatar" />
       </div>
 
       {/* LEWA KOLUMNA */}
@@ -111,8 +118,8 @@ const Profile = () => {
               type="number"
               name="userAveragePaceStart"
               placeholder="0"
-              value={user ? user.userAveragePaceStart : ""}
-              onChange={(e) => setUserAveragePaceStart(e.target.value)}
+              value={user ? user.pace_min : ""}
+              onChange={(e) => setpace_min(e.target.value)}
             ></input>
             <div className="rangeMinus">-</div>
             <input
@@ -120,8 +127,8 @@ const Profile = () => {
               type="number"
               name="userAveragePaceEnd"
               placeholder="0"
-              value={user ? user.userAveragePaceEnd : ""}
-              onChange={(e) => setUserAveragePaceEnd(e.target.value)}
+              value={user ? user.pace_max : ""}
+              onChange={(e) => setpace_max(e.target.value)}
             ></input>
           </div>
         </div>
@@ -138,18 +145,16 @@ const Profile = () => {
               {user ? user.name : ""}
           </div>
           <div className="user_details_type">name</div>
-          
+         
           <div
             className="user_details"
             id="userAge"
             type="text"
             name="userAge"
-            placeholder="userAge"
-            value={user ? user.age : ""}
-          >
-            19
-          </div>
-          <div className="user_details_type">age</div>
+            placeholder="userAge">
+              {user ? user.birth_year : "unknown"}
+            </div>
+          <div className="user_details_type">birth year</div>
           
           <div className="rangeFilter"  id="user_details_type_location_1">
             <input
@@ -160,13 +165,9 @@ const Profile = () => {
               placeholder="Warsaw"
               //value nie zmienia się bo na stałe jest ustawione z db i odświeża się przy kazdym wpisie
               value={user ? user.location : ""}
-              onChange={(e) => setUserLocation(e.target.value)}
-            >
-            </input>
+              onChange={(e) => setUserLocation(e.target.value)}/>
           </div>
-          <div className="user_details_type" id="user_details_type_location_2">
-            location
-          </div>
+          <div className="user_details_type" id="user_details_type_location_2">location</div>
         </div>
 
         {/* PRAWA KOLUMNA */}
@@ -183,11 +184,11 @@ const Profile = () => {
           <div className="rangeFilter">
             <input
               className="inputRange"
-              type="text"
+              type="number"
               name="userRangeStart"
               placeholder="0"
-              value={user ? user.userRangeStart : ""}
-              onChange={(e) => setUserRangeStart(e.target.value)}
+              value={user ? user.distance_min : ""}
+              onChange={(e) => setdistance_min(e.target.value)}
             ></input>
             <div className="rangeMinus">-</div>
             <input
@@ -195,8 +196,8 @@ const Profile = () => {
               type="number"
               name="userRangeEnd"
               placeholder="0"
-              value={user ? user.userRangeEnd : ""}
-              onChange={(e) => setUserRangeEnd(e.target.value)}
+              value={user ? user.distance_max : ""}
+              onChange={(e) => setdistance_max(e.target.value)}
             ></input>
           </div>
         </div>
