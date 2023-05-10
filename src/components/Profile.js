@@ -13,11 +13,11 @@ const Profile = () => {
 
   const [name, setName] = useState()
   const [userLocation, setUserLocation] = useState();
-  const [description, setDescripton] = useState();
-  const [userRangeStart, setUserRangeStart] = useState();
-  const [userRangeEnd, setUserRangeEnd] = useState();
-  const [userAveragePaceStart, setUserAveragePaceStart] = useState();
-  const [userAveragePaceEnd, setUserAveragePaceEnd] = useState();
+  const [description, setDescripton] = useState('');
+  const [userRangeStart, setUserRangeStart] = useState('');
+  const [userRangeEnd, setUserRangeEnd] = useState('');
+  const [userAveragePaceStart, setUserAveragePaceStart] = useState('');
+  const [userAveragePaceEnd, setUserAveragePaceEnd] = useState('');
  
 
 
@@ -110,7 +110,8 @@ const Profile = () => {
               className="inputRange"
               type="number"
               name="userAveragePaceStart"
-              placeholder="22"
+              placeholder="0"
+              value={user ? user.userAveragePaceStart : ""}
               onChange={(e) => setUserAveragePaceStart(e.target.value)}
             ></input>
             <div className="rangeMinus">-</div>
@@ -118,7 +119,8 @@ const Profile = () => {
               className="inputRange"
               type="number"
               name="userAveragePaceEnd"
-              placeholder="22"
+              placeholder="0"
+              value={user ? user.userAveragePaceEnd : ""}
               onChange={(e) => setUserAveragePaceEnd(e.target.value)}
             ></input>
           </div>
@@ -133,7 +135,7 @@ const Profile = () => {
             name="userName"
             placeholder="userName"
             required="true">
-              {/* {user.name} */}
+              {user ? user.name : ""}
           </div>
           <div className="user_details_type">name</div>
           
@@ -142,13 +144,10 @@ const Profile = () => {
             id="userAge"
             type="text"
             name="userAge"
-            required={true}
             placeholder="userAge"
-            value={"24"}
-            // onChange={handleChange}
+            value={user ? user.age : ""}
           >
             19
-            {/* {userAge} */}
           </div>
           <div className="user_details_type">age</div>
           
@@ -158,8 +157,9 @@ const Profile = () => {
               id="userLocation"
               type="text"
               name="userLocation"
-              required={true}
               placeholder="Warsaw"
+              //value nie zmienia się bo na stałe jest ustawione z db i odświeża się przy kazdym wpisie
+              value={user ? user.location : ""}
               onChange={(e) => setUserLocation(e.target.value)}
             >
             </input>
@@ -183,9 +183,10 @@ const Profile = () => {
           <div className="rangeFilter">
             <input
               className="inputRange"
-              type="number"
+              type="text"
               name="userRangeStart"
-              placeholder="22"
+              placeholder="0"
+              value={user ? user.userRangeStart : ""}
               onChange={(e) => setUserRangeStart(e.target.value)}
             ></input>
             <div className="rangeMinus">-</div>
@@ -193,7 +194,8 @@ const Profile = () => {
               className="inputRange"
               type="number"
               name="userRangeEnd"
-              placeholder="22"
+              placeholder="0"
+              value={user ? user.userRangeEnd : ""}
               onChange={(e) => setUserRangeEnd(e.target.value)}
             ></input>
           </div>
@@ -208,11 +210,10 @@ const Profile = () => {
           id="description_rowUser_main_profile"
           name="userDescription"
           type="text"
-          placeholder="Something about you"
-          value={description}
+          placeholder={user ? user.description : "Something about you"}
+          value={user ? user.description : description}
           onChange={(e) => setDescripton(e.target.value)}
-          >  
-          {/* {user.description} */}
+          >
         </textarea>
       </div>
 
