@@ -12,14 +12,14 @@ const Profile = () => {
   const userId = cookies.UserId;
 
   const [name, setName] = useState()
-  const [userLocation, setUserLocation] = useState();
+  const [location, setlocation] = useState('');
   const [description, setDescripton] = useState('');
   const [distance_min, setdistance_min] = useState('');
   const [distance_max, setdistance_max] = useState('');
   const [pace_min, setpace_min] = useState('');
   const [pace_max, setpace_max] = useState('');
   
-  
+  /////////////////////////////////////////////////////////////
   // GET USER DATA 
   const getUserData = async (e) => {
     try {
@@ -34,11 +34,12 @@ const Profile = () => {
   }
 
 
+
   // PRZYCISK SAVE
   const handleSaveChanges = async (e) => {
     e.preventDefault()
     try {
-        const response = await axios.put('http://localhost:8000/users', {userId, userLocation, description, distance_min, distance_max, pace_min, pace_max})
+        const response = await axios.put('http://localhost:8000/users', {userId, location, description, distance_min, distance_max, pace_min, pace_max})
         const success = response.satusCode === 200
         // window.location.reload(false);
         getUserData()
@@ -50,6 +51,8 @@ const Profile = () => {
     }
   }
 
+
+
   //przytrzymanie buttona
   const handleClick = (event) => {
     let buttonClass = event.target.className;
@@ -60,6 +63,8 @@ const Profile = () => {
       event.target.className = "notClickedButtonType";
     }
   };
+
+
 
   //kliknięty button
   const buttonTypes = (value) => {
@@ -73,13 +78,20 @@ const Profile = () => {
     );
   };
 
+
+
   //pobranie danych przy ładowaniu strony
   useEffect(() => {
     getUserData();
-  }, [])
+    setpace_max(user ? user.pace_max : '0');
+  }, [user])
 
   console.log(user)
+  console.log(pace_max)
 
+
+
+  ///////////////////////////////////////////////////////////////
   return (
     <div className="bg_rectangle">
       {/* ZDJĘCIA */}
@@ -128,7 +140,7 @@ const Profile = () => {
               name="userAveragePaceEnd"
               placeholder="0"
               value={user ? user.pace_max : ""}
-              onChange={(e) => setpace_max(e.target.value)}
+              onChange={(user) => setpace_max(user.target.value)}
             ></input>
           </div>
         </div>
@@ -165,7 +177,7 @@ const Profile = () => {
               placeholder="Warsaw"
               //value nie zmienia się bo na stałe jest ustawione z db i odświeża się przy kazdym wpisie
               value={user ? user.location : ""}
-              onChange={(e) => setUserLocation(e.target.value)}/>
+              onChange={(e) => setlocation(e.target.value)}/>
           </div>
           <div className="user_details_type" id="user_details_type_location_2">location</div>
         </div>
