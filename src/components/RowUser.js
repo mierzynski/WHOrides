@@ -15,6 +15,7 @@ const RowUser = ({ handleClickRowUser, newFilters }) => {
       const response = await axios.get("http://localhost:8000/findusers", {
         params: { filters: newFilters },
       });
+      console.log(response.data);
       setUsers(response.data);
       setFilters(newFilters);
     } catch (error) {
