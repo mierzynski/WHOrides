@@ -1,5 +1,8 @@
 import { useState } from "react";
 import EventThumbnail from "./EventThumbnail";
+import axios from "axios";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 const CreateEvents = () => {
   const surfaceTypes = ["road", "gravel", "forest", "mix"];
@@ -11,24 +14,71 @@ const CreateEvents = () => {
   const [startLocation, setStartLocation] = useState("Poznań, Most Teatralny");
   const [date, setDate] = useState("2023.04.20 5:30pm");
   const [isPublic, setIsPublic] = useState(true);
+  const [image, setImage] = useState();
+  const [cookies, setCookie, removeCookie] = useCookies(null);
+  const userId = cookies.UserId;
+  const navigate = useNavigate();
 
-  const detailsArray = [
-    title,
-    distance,
-    avgPace,
-    surface,
-    startLocation,
-    description,
-    date,
-  ];
+  const detailsObj = {
+    title: title,
+    author_id: userId,
+    distance: distance,
+    avg_pace: avgPace,
+    surface: surface,
+    startLocation: startLocation,
+    description: description,
+    meeting_date: date,
+    isPublic: isPublic,
+    participants: [userId],
+    map_img: image,
+  };
 
   const handleIsPublic = () => {
     setIsPublic((isPublic) => !isPublic);
   };
 
+  const convertToBase64 = (e) => {
+    let reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = () => {
+      setImage(reader.result);
+    };
+    reader.onerror = (error) => {
+      console.log("Error: ", error);
+    };
+  };
+
+  const handleCreateEvent = async (e) => {
+    try {
+      const response = await axios.post("http://localhost:8000/createevent", {
+        detailsObj,
+      });
+
+      const success = response.status === 201;
+      if (success) navigate("/profile");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
-      <div className="livePreviewContainer"></div>
+      <div className="livePreviewContainer">
+        <div className="livePreviewContainer">
+          <span id="livePreviewLabel">ADD SCREENSHOT OF MAP</span>
+          <div className="bgEventThumbnail bg_rectangle">
+            <label for="files" className="btn">
+              Select Image
+            </label>
+            <input type="file" id="files" onChange={convertToBase64} />
+            {image == "" || image == null ? (
+              ""
+            ) : (
+              <img width={100} height={100} src={image} />
+            )}
+          </div>
+        </div>
+      </div>
       <div className="createEventContainer bg_rectangle">
         <input
           id="createTitleEvent"
@@ -118,11 +168,17 @@ const CreateEvents = () => {
             PUBLIC
           </button>
         </div>
-        <button id="createEvent_button">CREATE EVENT</button>
+        <button
+          id="createEvent_button"
+          type="submit"
+          onClick={handleCreateEvent}
+        >
+          CREATE EVENT
+        </button>
       </div>
       <div className="livePreviewContainer">
         <span id="livePreviewLabel">LIVE PREVIEW</span>
-        <EventThumbnail detailsArray={detailsArray} />
+        <EventThumbnail detailsObj={detailsObj} />
       </div>
     </>
   );

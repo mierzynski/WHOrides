@@ -1214,6 +1214,18 @@ textarea{
   font-size: 0.938rem;
   padding: 0.625rem 1.5rem;
 }
+input[type=file] {
+  visibility: hidden;
+}
+
+label {
+  border: 2px solid #000000;
+  background-color: #D1FF87;
+  font-family: 'Chakra Petch';
+  font-weight: 500;
+  font-size: 0.938rem;
+  padding: 0.625rem 1.5rem;
+}
 
 .createEventContainer {
   width: 40%;
@@ -1367,6 +1379,7 @@ textarea{
   align-items: center;
   width: 12.125rem;
   height: 12.2rem;
+  margin: 5px;
 }
 
 .eventThumbnailTitle{
@@ -1416,7 +1429,7 @@ textarea{
 .searchEvent_container{
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .events_filtersAndDetailsContainer{
@@ -1567,15 +1580,10 @@ textarea{
 #events_midContainer{
   overflow-y: scroll;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
   background: linear-gradient(180deg, #FFFFFF -117.46%, rgba(217, 217, 217, 0) 100%);
   width: 60%;
-  height: 52%;
-  margin-top: 0.6rem;
-}
-
-.eventsResultRow{
-  display: flex;
-  justify-content: space-around;
+  height: 70%;
   margin-top: 0.6rem;
 }
