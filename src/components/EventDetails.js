@@ -48,7 +48,7 @@ const EventDetails = ({ clickedEvent }) => {
               {clickedEvent.participants.length}
             </span>
           </div>
-          <div id="eventDetails_mapIMG"></div>
+          <img id="eventDetails_mapIMG" src={clickedEvent.map_img} />
           <button id="eventDetails_clickToZoom">click to zoom track</button>
           <div id="eventDetails_buttonsContainer">
             <button className="eventDetails_buttons">ASK ABOUT EVENT</button>

@@ -38,7 +38,6 @@ const ProfileDetailsUser = (props) => {
       });
       setChat(response.data.chat);
       navigate("/chat", { state: { chat: response.data.chat } });
-      console.log(chat);
     } catch (error) {
       console.log(error);
     }

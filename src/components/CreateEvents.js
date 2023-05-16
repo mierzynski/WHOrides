@@ -48,14 +48,15 @@ const CreateEvents = () => {
     };
   };
 
-  const handleCreateEvent = async (e) => {
+  const handleCreateEvent = async () => {
     try {
       const response = await axios.post("http://localhost:8000/createevent", {
         detailsObj,
       });
+      // console.log(response);
+      // if (response.status === 201) navigate("/profile");
 
-      const success = response.status === 201;
-      if (success) navigate("/profile");
+      // window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -74,7 +75,7 @@ const CreateEvents = () => {
             {image == "" || image == null ? (
               ""
             ) : (
-              <img width={100} height={100} src={image} />
+              <img id="eventDetails_mapIMG" src={image} />
             )}
           </div>
         </div>
@@ -144,7 +145,7 @@ const CreateEvents = () => {
         <div className="locationDateSurfaceLabels">start date:</div>
         <input
           className="locationDateSurfaceInputs"
-          type="text"
+          type="datetime-local"
           placeholder="2023.04.20 5:30pm"
           required={true}
           onChange={(e) => setDate(e.target.value)}
