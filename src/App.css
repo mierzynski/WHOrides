@@ -1050,8 +1050,25 @@ textarea{
   margin-right: 0.438rem;
 }
 
+#textAreaComment{
+  background: #ECECEC;
+  border: 2px solid #000000;
+  border-radius: 2px;
+  width: 90%;
+  height: 40%;
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 400;
+  font-size: 0.688rem;
+}
+
+.confirmComment_button{
+  background-color: #D1FF87;
+  border: 2px solid #000000;
+  font-family: 'Chakra Petch', sans-serif;
+}
+
 .chatWindow {
-  margin-top: 10%;
+  margin-top: 2%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1183,6 +1200,17 @@ textarea{
   font-size: 1rem;
   text-align: left;
   padding: 0.4rem;
+}
+
+#rateUser_button{
+  border: none;
+  background-color: transparent;
+  font-family: 'Chakra Petch';
+  font-weight: 400;
+}
+
+#rateUser_button:hover{
+  font-weight: 700;
 }
 
 /* EVENTS */

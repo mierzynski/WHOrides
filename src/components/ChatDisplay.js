@@ -1,6 +1,7 @@
 import { FaTimes } from "react-icons/fa";
 import Chat from "./Chat";
 import ChatInput from "./ChatInput";
+import RateUser from "./RateUser";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
@@ -9,9 +10,14 @@ const ChatDisplay = ({ chat, correspondingUserId }) => {
   const messages = [];
   const [currentChat, setCurrentChat] = useState(chat);
   const [isPendingFriend, setIsPendingFriend] = useState(false);
+  const [isRateButtonClicked, setIsRateButtonClicked] = useState(false);
   const [cookies, setCookie, removeCookie] = useCookies(null);
   const user = cookies.UserId;
   // const [friendId, setFriendId] = useState(correspondingUserId);
+
+  const handleRateUserClick = () => {
+    setIsRateButtonClicked((isRateButtonClicked) => !isRateButtonClicked);
+  };
 
   const isPendingFriendFunction = async () => {
     try {
@@ -75,10 +81,21 @@ const ChatDisplay = ({ chat, correspondingUserId }) => {
 
   return (
     <>
+      {isRateButtonClicked ? (
+        <RateUser
+          ratedUserId={
+            chat.members_id[0] == correspondingUserId
+              ? chat.members_id[0]
+              : chat.members_id[1]
+          }
+        />
+      ) : (
+        ""
+      )}
       <div className="chatWindow bg_rectangle">
         <div className="chatHeader">
           <span>
-            Chat with{" "}
+            {/* Chat with{" "} */}
             {chat.members_id[0] == correspondingUserId
               ? chat.members_name[0]
               : chat.members_name[1]}
@@ -91,6 +108,12 @@ const ChatDisplay = ({ chat, correspondingUserId }) => {
           descendingOrderMessages={descendingOrderMessages}
         />
         <ChatInput chatId={chat.chatId} updateChat={updateChat} />
+        <button id="rateUser_button" onClick={handleRateUserClick}>
+          Rate or comment contact with{" "}
+          {chat.members_id[0] == correspondingUserId
+            ? chat.members_name[0]
+            : chat.members_name[1]}
+        </button>
       </div>
     </>
   );
