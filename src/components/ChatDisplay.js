@@ -6,7 +6,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 
-const ChatDisplay = ({ chat, correspondingUserId }) => {
+const ChatDisplay = ({ chat, correspondingUserId, setClickedChatRow }) => {
   const messages = [];
   const [currentChat, setCurrentChat] = useState(chat);
   const [isPendingFriend, setIsPendingFriend] = useState(false);
@@ -17,6 +17,10 @@ const ChatDisplay = ({ chat, correspondingUserId }) => {
 
   const handleRateUserClick = () => {
     setIsRateButtonClicked((isRateButtonClicked) => !isRateButtonClicked);
+  };
+
+  const handleCloseWindow = () => {
+    setClickedChatRow(null);
   };
 
   const isPendingFriendFunction = async () => {
@@ -88,6 +92,7 @@ const ChatDisplay = ({ chat, correspondingUserId }) => {
               ? chat.members_id[0]
               : chat.members_id[1]
           }
+          setIsRateButtonClicked={setIsRateButtonClicked}
         />
       ) : (
         ""
@@ -100,7 +105,9 @@ const ChatDisplay = ({ chat, correspondingUserId }) => {
               ? chat.members_name[0]
               : chat.members_name[1]}
           </span>
-          <FaTimes id="closeWindow" />
+          <button className="closeWindow_button" onClick={handleCloseWindow}>
+            <FaTimes id="closeWindow" />
+          </button>
         </div>
         <Chat
           isPendingFriend={isPendingFriend}

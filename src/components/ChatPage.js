@@ -46,7 +46,11 @@ const Chat = () => {
 
       <div className="columnFindFriends">
         {clickedChatRow ? (
-          <ChatDisplay chat={clickedChatRow} correspondingUserId={friendId} />
+          <ChatDisplay
+            chat={clickedChatRow}
+            correspondingUserId={friendId}
+            setClickedChatRow={setClickedChatRow}
+          />
         ) : (
           <></>
         )}

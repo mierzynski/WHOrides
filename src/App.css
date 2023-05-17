@@ -1132,6 +1132,11 @@ textarea{
   padding: 0px;
 }
 
+.closeWindow_button{
+  border: none;
+  background-color: transparent;
+}
+
 .chatHeader {
   background-color: #D1FF87;
   width: 100%;
@@ -1580,6 +1585,25 @@ label {
   font-size: 0.625rem;
   background-color: transparent;
   border: none;
+}
+
+#askAboutEvent_container{
+  display: flex;
+}
+
+#askAboutEvent_button{
+  font-family: 'Chakra Petch';
+  font-weight: 700;
+  font-size: 0.625rem;
+  border: 1px solid #000000;
+  background-color: #D1FF87;
+}
+
+#askAboutEvent_textarea{
+  background-color: #D1FF87;
+  font-family: 'Chakra Petch';
+  font-weight: 400;
+  font-size: 0.625rem;
 }
 
 .eventDetails_buttons{

@@ -29,6 +29,9 @@ const RateUser = (ratedUserId) => {
       });
       if (response.data == "Done") {
         window.location.reload();
+      } else if (response.data == "Comment already exist") {
+        alert("Comment already exist");
+        window.location.reload();
       }
     } catch (error) {
       console.log(error);
