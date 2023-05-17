@@ -2,6 +2,7 @@ import { FaUser } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useCookies } from 'react-cookie';
 import axios from "axios";
+import UpdatePhotos from "./UpdatePhotos";
 
 
 const Profile = () => {
@@ -9,6 +10,8 @@ const Profile = () => {
   const [isFocus, setIsFocus] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const [user, setUser] = useState();
+  const [isShown, setIsShown] = useState(false);
+  const [isActive, setIsActive] = useState(false)
   const userId = cookies.UserId;
 
   const [name, setName] = useState()
@@ -62,7 +65,14 @@ const Profile = () => {
     } else {
       event.target.className = "notClickedButtonType";
     }
-  };
+  }
+
+  //przycisk do zdjęć
+  const handleClickShow = () => {
+    setIsShown(current => !current);
+    setIsActive(current => !current);
+    console.log("elo")
+  }
 
 
 
@@ -76,7 +86,7 @@ const Profile = () => {
         {value}
       </button>
     );
-  };
+  }
 
 
 
@@ -84,16 +94,80 @@ const Profile = () => {
   useEffect(() => {
     getUserData();
     setpace_max(user ? user.pace_max : '0');
-  }, [user])
+  }, [])
 
   console.log(user)
   console.log(pace_max)
-
+  console.log(pace_min)
 
 
   ///////////////////////////////////////////////////////////////
   return (
     <div className="bg_rectangle">
+      <div id="upload_photos"
+      >
+        {isShown && (
+          <div className="upload_photos"
+          style={{
+            zIndex: isActive ? 3 : 0
+          }}>  
+            <div id="upload_photo_title">
+              <div/>
+              <div>photos</div>
+              <button className ="exit_button" onClick={handleClickShow}>X</button>
+            </div>
+            <div id="upload_photo_table">
+              <img
+                src="https://cdn.pixabay.com/photo/2015/03/21/14/34/silhouette-683751_960_720.jpg"
+                alt="img"
+                className="avatar_rowUser profile_avatar upload_img"
+                value={user ? user.profile_photo : FaUser}
+              />
+              <img
+                src="https://cdn.pixabay.com/photo/2015/03/21/14/34/silhouette-683751_960_720.jpg"
+                alt="img"
+                className="avatar_rowUser profile_avatar upload_img"
+                value={user ? user.profile_photo : FaUser}
+              />
+              <img
+                src="https://cdn.pixabay.com/photo/2015/03/21/14/34/silhouette-683751_960_720.jpg"
+                alt="img"
+                className="avatar_rowUser profile_avatar upload_img"
+                value={user ? user.profile_photo : FaUser}
+              />
+              <img
+                src="https://cdn.pixabay.com/photo/2015/03/21/14/34/silhouette-683751_960_720.jpg"
+                alt="img"
+                className="avatar_rowUser profile_avatar upload_img"
+                value={user ? user.profile_photo : FaUser}
+              />
+              <img
+                src="https://cdn.pixabay.com/photo/2015/03/21/14/34/silhouette-683751_960_720.jpg"
+                alt="img"
+                className="avatar_rowUser profile_avatar upload_img"
+                value={user ? user.profile_photo : FaUser}
+              />
+              <img
+                src="https://cdn.pixabay.com/photo/2015/03/21/14/34/silhouette-683751_960_720.jpg"
+                alt="img"
+                className="avatar_rowUser profile_avatar upload_img"
+                value={user ? user.profile_photo : FaUser}
+              />
+            </div>
+            <div>
+              <div id="upload_photo_buttons">
+                <button className="exit_button">
+                  Select Image
+                </button>
+                <button className="exit_button">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+        </div>
+
       {/* ZDJĘCIA */}
       <div className="photos_profile_row">
         <img src="https://cdn.pixabay.com/photo/2015/03/21/14/34/silhouette-683751_960_720.jpg" 
@@ -106,7 +180,7 @@ const Profile = () => {
           id="profile_main_avatar"
           value={user ? user.profile_photo : FaUser}
         />
-        <button className="" id="upload_photo" >
+        <button  onClick={handleClickShow} className="" id="upload_photo" >
           UPLOAD PHOTO
         </button>
         <img src="https://cdn.pixabay.com/photo/2015/03/21/14/34/silhouette-683751_960_720.jpg" 

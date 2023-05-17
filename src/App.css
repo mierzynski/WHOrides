@@ -915,6 +915,61 @@ textarea{
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+
+#upload_photos{
+  display: flex;
+  z-index: 0;
+  position : absolute;
+  margin-top: 1rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 40%;
+}
+
+#upload_photo_title{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.exit_button{
+  background: #D1FF87;
+  font-family: 'Chakra Petch';
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+#upload_photo_table{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.upload_img{
+  margin: 0.25rem;
+}
+
+#upload_photo_buttons{
+  padding-left: 2rem;
+  padding-right: 2rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#upload_photo_css{
+  background: #D1FF87;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  height: 4.6rem;
+  width: 4.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
   
 
 /* CHAT */
