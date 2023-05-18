@@ -917,25 +917,30 @@ textarea{
 }
 
 #upload_photos{
+  background: #FFE2BF;
+  border: 2px solid #000000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
   display: flex;
   z-index: 0;
   position : absolute;
-  margin-top: 1rem;
+  margin: 2rem;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 50%;
-  height: 40%;
+  width: 45%;
+  padding: 0.5rem;
 }
 
 #upload_photo_title{
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   margin-top: 0.5rem;
   margin-bottom: 1rem;
+  width: 100%;
 }
 
-.exit_button{
+.upload_button{
   background: #D1FF87;
   font-family: 'Chakra Petch';
   font-weight: 600;
@@ -947,6 +952,7 @@ textarea{
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
+  width: 90%;
 }
 
 .upload_img{
@@ -954,10 +960,12 @@ textarea{
 }
 
 #upload_photo_buttons{
-  padding-left: 2rem;
-  padding-right: 2rem;
   display: flex;
   justify-content: space-evenly;
+  
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  width: 50%;
 }
 
 #upload_photo_css{
