@@ -7,8 +7,6 @@ const Chat = ({ descendingOrderMessages, friendId, isPendingFriend }) => {
   const [cookies, setCookie, removeCookie] = useCookies(null);
   const user = cookies.UserId;
 
-  console.log(isPendingFriend);
-
   const acceptFriend = async () => {
     try {
       const response = await axios.put("http://localhost:8000/acceptfriend", {
