@@ -11,6 +11,7 @@ const EventDetails = ({ clickedEvent }) => {
   const userId = cookies.UserId;
   const userName = cookies.UserName;
   const [chat, setChat] = useState();
+  const [isJoined, setIsJoined] = useState(false);
   const [textArea, setTextArea] = useState("");
   const [isTextArea, setIsTextArea] = useState(false);
 
@@ -59,20 +60,24 @@ const EventDetails = ({ clickedEvent }) => {
   };
 
   const jointToEvent = async () => {
-    if (textArea) {
-      const participant = {
-        date: new Date().toISOString(),
-        user_id: userId,
-        isAccepted: textArea,
-      };
+    const participant = {
+      date: new Date().toISOString(),
+      user_id: userId,
+      isAccepted: true,
+    };
+    if (clickedEvent.is_public == false) {
+      participant.isAccepted = false;
+    }
 
-      try {
-        await axios.post("http://localhost:8000/joinevent", { participant });
-        // updateChat();
-        // setTextArea("");
-      } catch (error) {
-        console.log(error);
-      }
+    try {
+      const respond = await axios.post("http://localhost:8000/joinevent", {
+        participant: participant,
+        eventId: clickedEvent._id,
+      });
+      setIsJoined(true);
+      alert(respond.data);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -133,7 +138,22 @@ const EventDetails = ({ clickedEvent }) => {
                 >
                   ASK ABOUT EVENT
                 </button>
-                <button className="eventDetails_buttons">JOIN TO EVENT</button>
+                {isJoined ? (
+                  <button
+                    className="eventDetails_buttons"
+                    onClick={jointToEvent}
+                    disabled
+                  >
+                    JOIN TO EVENT
+                  </button>
+                ) : (
+                  <button
+                    className="eventDetails_buttons"
+                    onClick={jointToEvent}
+                  >
+                    JOIN TO EVENT
+                  </button>
+                )}
               </>
             )}
           </div>
