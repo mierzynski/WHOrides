@@ -5,6 +5,15 @@ const EventThumbnail = ({ detailsObj, newFilters, handleClickEvent }) => {
   const [events, setEvents] = useState();
   const [filters, setFilters] = useState();
 
+  const convTodateAndTime = (timestamp) => {
+    const date = new Date(timestamp);
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    const dateFormat = hours + ":" + minutes + ", " + date.toDateString();
+
+    return dateFormat;
+  };
+
   const getEvents = async () => {
     try {
       const response = await axios.get("http://localhost:8000/findevents", {
@@ -76,7 +85,7 @@ const EventThumbnail = ({ detailsObj, newFilters, handleClickEvent }) => {
           <span className="eventThumbnailDetail">{event.location}</span>
           <div className="eventThumbnailsDescription">{event.description}</div>
           <div className="eventThumbnailDetail bottomDateEventThumbnail">
-            {event.meeting_date}
+            {convTodateAndTime(event.meeting_date)}
           </div>
         </button>
       ))}

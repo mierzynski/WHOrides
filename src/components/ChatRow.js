@@ -23,6 +23,29 @@ const ChatRow = ({ user, handleClickChatRow }) => {
     getAllChats();
   }, []);
 
+  const convertMsToTime = (ms) => {
+    function round(value, step) {
+      step || (step = 1.0);
+      var inv = 1.0 / step;
+      return Math.round(value * inv) / inv;
+    }
+
+    let txt;
+    let seconds = Math.floor(ms / 1000);
+    let minutes = Math.floor(seconds / 60);
+    let hours = Math.floor(minutes / 60);
+
+    if (hours > 24) {
+      txt = round(hours / 24, 0.5) + " days";
+    } else if (hours >= 1) {
+      txt = round(hours, 0.5) + "h";
+    } else {
+      txt = minutes + "min";
+    }
+
+    return txt;
+  };
+
   return (
     <>
       {chats?.map((chat) => (
@@ -49,8 +72,10 @@ const ChatRow = ({ user, handleClickChatRow }) => {
           <div className="chatRowDate">
             {chat.messages.length < 1
               ? ""
-              : actualDate -
-                new Date(chat.messages[chat.messages.length - 1].date)}
+              : convertMsToTime(
+                  actualDate -
+                    new Date(chat.messages[chat.messages.length - 1].date)
+                )}
           </div>
         </button>
       ))}
