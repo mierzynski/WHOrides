@@ -315,7 +315,7 @@ nav button:focus {
   width: 80%;
 }
 
-.formSignUpLogIn label {
+.formSignUpLogIn_label {
   font-family: 'Chakra Petch';
   font-weight: 600;
   font-size: 0.5rem;
@@ -323,16 +323,19 @@ nav button:focus {
   text-align: left;
   width: 80%;
   padding: 0rem 0.6rem;
+  border: none;
 }
 
 #signUpError {
   color: red;
+  border: none;
 }
 
-.formSignUpLogIn label:hover {
+.formSignUpLogIn_label:hover {
   font-weight: 700;
   font-style: italic;
   font-size: 0.6rem;
+  border: none;
 }
 
 .submitButton {
@@ -572,7 +575,14 @@ nav button:focus {
   background-color: #E7855B;
 }
 
-.avatar_rowUser {
+.avatar_rowUser{
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  height: 4.6rem;
+  width: 4.6rem;
+}
+
+.avatarNoPhoto_rowUser {
   background: #D1FF87;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
@@ -666,7 +676,7 @@ nav button:focus {
   box-shadow: inset 0 0 4px 2px rgba(0, 0, 0, 0.75);
 }
 
-.photoInUserDetails{
+.defaultPhotoInUserDetails{
   background-color: #D1FF87;
   box-shadow: 0px 2px 20px 5px rgba(0, 0, 0, 0.5);
   border-radius: 4px;
@@ -677,6 +687,13 @@ nav button:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.photoInUserDetails{
+  box-shadow: 0px 2px 20px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  height: 14.313rem;
+  margin: 0rem 0.5rem;
 }
 
 #detailsAndComments {
@@ -784,10 +801,23 @@ nav button:focus {
   padding: 1rem;
 }
 
-.profile_avatar{  
-  padding: 5.5%;
+.avatarProfile_fauser{  
+  background-color: #D1FF87;
   box-shadow: 0px 2px 20px 5px rgba(0, 0, 0, 0.5);
   border-radius: 4px;
+  height: 10rem;
+  padding: 0rem 2.5rem;
+  font-size: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatarProfile{
+  box-shadow: 0px 2px 20px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  height: 10rem;
+  width: 10rem;
 }
 
 #profile_main_avatar{
@@ -798,12 +828,12 @@ nav button:focus {
   z-index: 2;
   background: rgba(231, 133, 91, 0.2);
   backdrop-filter: blur(10px);
-  /* border-radius: 0px 0px 4px 4px; */
+  border-radius: 4px;
   border: none;
   position: absolute;
   display: flex;
   align-self: flex-end;
-  width: 9.723rem;
+  width: 10rem;
   height: 3.438rem;
   font-family: 'Chakra Petch';
   font-weight: 600;
@@ -945,6 +975,22 @@ textarea{
   font-family: 'Chakra Petch';
   font-weight: 600;
   font-size: 0.75rem;
+  width: 33%;
+  /* display: flex;
+  justify-content: center;
+  text-align: center; */
+  padding: auto;
+}
+
+#uploadPhoto_previewImg{
+  display: flex;
+  margin: 0rem 0.625rem;
+  width: 33%;
+}
+
+.uploadedPhotos_button{
+  border: none;
+  background-color: transparent;
 }
 
 #upload_photo_table{
@@ -960,12 +1006,29 @@ textarea{
 }
 
 #upload_photo_buttons{
-  display: flex;
+  /* display: flex;
   justify-content: space-evenly;
   
   margin-top: 0.5rem;
   margin-bottom: 1rem;
-  width: 50%;
+  width: 50%; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.avatarUploaded{
+  box-shadow: 0px 2px 20px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  height: 6.25rem;
+}
+
+.avatarUploaded:hover{
+  box-shadow: 0px 2px 20px 5px rgba(246, 0, 0, 0.5);
+}
+
+#dontHavePhotosSpan{
+  padding: 0.75rem;
 }
 
 #upload_photo_css{
@@ -1019,6 +1082,14 @@ textarea{
   font-family: 'Chakra Petch';
   font-weight: 400;
   font-size: 0.7rem;
+}
+
+.friend_avatar{
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  height: 3rem;
+  width: 3rem;
+  margin: 0rem 0.5rem;
 }
 
 .userFa_friendsChat {

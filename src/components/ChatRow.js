@@ -54,9 +54,17 @@ const ChatRow = ({ user, handleClickChatRow }) => {
           key={chat.id}
           onClick={(e) => handleClickChatRow(chat)}
         >
-          <div className="chatRowAvatar">
-            <FaUser />
-          </div>
+          {/* {friend.images.length > 0 ? (
+            <img
+              src={friend.images[0]}
+              className="friend_avatar pendinguserFa"
+            />
+          ) : (
+            <div className="chatRowAvatar">
+              <FaUser />
+            </div>
+          )} */}
+
           <div className="chatRowNameAndLastMesage_container">
             <div className="chatRowName">
               {chat.members_id[0] == user

@@ -56,7 +56,7 @@ const CreateEvents = () => {
       // console.log(response);
       // if (response.status === 201) navigate("/profile");
 
-      // window.location.reload();
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }

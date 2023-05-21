@@ -1,9 +1,9 @@
 import CommentRow from "./CommentRow";
-import PhotoUserDetailsFind from "./PhotoUserDetailsFind";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import { useState } from "react";
+import { FaUser } from "react-icons/fa";
 
 const ProfileDetailsUser = (props) => {
   const [chat, setChat] = useState();
@@ -92,10 +92,25 @@ const ProfileDetailsUser = (props) => {
     <>
       <div className="profile_details bg_rectangle">
         <div id="photos_profile">
-          <PhotoUserDetailsFind />
-          <PhotoUserDetailsFind />
-          <PhotoUserDetailsFind />
-          <PhotoUserDetailsFind />
+          {user.images.length > 0 ? (
+            <>
+              {user.images?.map((image) => (
+                <img src={image} alt="img" className="photoInUserDetails" />
+              ))}
+            </>
+          ) : (
+            <>
+              <div className="defaultPhotoInUserDetails">
+                <FaUser />
+              </div>
+              <div className="defaultPhotoInUserDetails">
+                <FaUser />
+              </div>
+              <div className="defaultPhotoInUserDetails">
+                <FaUser />
+              </div>
+            </>
+          )}
         </div>
         <div id="detailsAndComments">
           <div id="detailsType">

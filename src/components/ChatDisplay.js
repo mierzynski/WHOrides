@@ -14,7 +14,7 @@ const ChatDisplay = ({ chat, correspondingUserId, setClickedChatRow }) => {
   const [cookies, setCookie, removeCookie] = useCookies(null);
   const user = cookies.UserId;
   // const [friendId, setFriendId] = useState(correspondingUserId);
-
+  // console.log(chat);
   const handleRateUserClick = () => {
     setIsRateButtonClicked((isRateButtonClicked) => !isRateButtonClicked);
   };
@@ -31,8 +31,10 @@ const ChatDisplay = ({ chat, correspondingUserId, setClickedChatRow }) => {
       response.data.pendingFriends.forEach(function (friend) {
         if (friend.user_id == correspondingUserId) {
           setIsPendingFriend(true);
+          console.log("true");
         } else {
           setIsPendingFriend(false);
+          console.log("false");
         }
       });
     } catch (error) {
@@ -100,7 +102,6 @@ const ChatDisplay = ({ chat, correspondingUserId, setClickedChatRow }) => {
       <div className="chatWindow bg_rectangle">
         <div className="chatHeader">
           <span>
-            {/* Chat with{" "} */}
             {chat.members_id[0] == correspondingUserId
               ? chat.members_name[0]
               : chat.members_name[1]}

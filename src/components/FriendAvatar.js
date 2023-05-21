@@ -30,13 +30,24 @@ const FriendAvatar = () => {
       {pendingFriends?.map((friend) => (
         <div className="friendAvatarAndName">
           <div className="nameOfFriend_avatar">{friend.name}</div>
-          <FaUser className="userFa_friendsChat pendinguserFa" />
+          {friend.images.length > 0 ? (
+            <img
+              src={friend.images[0]}
+              className="friend_avatar pendinguserFa"
+            />
+          ) : (
+            <FaUser className="userFa_friendsChat pendinguserFa" />
+          )}
         </div>
       ))}
       {friends?.map((friend) => (
         <div className="friendAvatarAndName">
           <div className="nameOfFriend_avatar">{friend.name}</div>
-          <FaUser className="userFa_friendsChat" />
+          {friend.images.length > 0 ? (
+            <img src={friend.images[0]} className="friend_avatar" />
+          ) : (
+            <FaUser className="userFa_friendsChat" />
+          )}
         </div>
       ))}
     </>

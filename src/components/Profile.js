@@ -4,6 +4,7 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 import UpdatePhotos from "./UpdatePhotos";
 import CreateEvents from "./CreateEvents";
+import UploadPhotos from "./UploadPhotos";
 
 const Profile = () => {
   const [cookies, setCookie, removeCookie] = useCookies(null);
@@ -21,7 +22,7 @@ const Profile = () => {
   const [distance_max, setdistance_max] = useState("");
   const [pace_min, setpace_min] = useState("");
   const [pace_max, setpace_max] = useState("");
-
+  console.log(user);
   /////////////////////////////////////////////////////////////
   // GET USER DATA
   const getUserData = async (e) => {
@@ -94,116 +95,55 @@ const Profile = () => {
     setpace_max(user ? user.pace_max : "0");
   }, []);
 
-  const convertToBase64 = (e) => {
-    let reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
-    reader.onload = () => {
-      // setImage(reader.result);
-    };
-    reader.onerror = (error) => {
-      console.log("Error: ", error);
-    };
-  };
-
-  console.log(user);
-  console.log(pace_max);
-  console.log(pace_min);
-
   ///////////////////////////////////////////////////////////////
   return (
     <div className="bg_rectangle">
       {isShown && (
-        <div
-          id="upload_photos"
-          style={{
-            zIndex: isActive ? 3 : 0,
-          }}
-        >
-          {/* tytuł */}
-          <div id="upload_photo_title">
-            <div></div>
-            <div>photos</div>
-            <button className="upload_button" onClick={handleClickShow}>
-              X
-            </button>
-          </div>
-          {/* srodek */}
-          <div id="upload_photo_table">
-            <img
-              src="https://cdn.pixabay.com/photo/2015/03/21/14/34/silhouette-683751_960_720.jpg"
-              alt="img"
-              className="avatar_rowUser profile_avatar upload_img"
-              value={user ? user.profile_photo : FaUser}
-            />
-            <img
-              src="https://cdn.pixabay.com/photo/2015/03/21/14/34/silhouette-683751_960_720.jpg"
-              alt="img"
-              className="avatar_rowUser profile_avatar upload_img"
-              value={user ? user.profile_photo : FaUser}
-            />
-
-            <img
-              src="https://cdn.pixabay.com/photo/2015/03/21/14/34/silhouette-683751_960_720.jpg"
-              alt="img"
-              className="avatar_rowUser profile_avatar upload_img"
-              value={user ? user.profile_photo : FaUser}
-            />
-            <img
-              src="https://cdn.pixabay.com/photo/2015/03/21/14/34/silhouette-683751_960_720.jpg"
-              alt="img"
-              className="avatar_rowUser profile_avatar upload_img"
-              value={user ? user.profile_photo : FaUser}
-            />
-            <img
-              src="https://cdn.pixabay.com/photo/2015/03/21/14/34/silhouette-683751_960_720.jpg"
-              alt="img"
-              className="avatar_rowUser profile_avatar upload_img"
-              value={user ? user.profile_photo : FaUser}
-            />
-          </div>
-          {/* dolna_strona */}
-          <div id="upload_photo_buttons">
-            <label for="files" className="upload_button">
-              Select Image
-            </label>
-            <input type="file" id="files" onChange={convertToBase64} />
-            <button className="upload_button">Save</button>
-          </div>
-
-          {/* <label for="files" className="btn">
-              Select Image
-            </label>
-            <input type="file" id="files" onChange={convertToBase64} />
-            {image == "" || image == null ? (
-              ""
-            ) : (
-              <img id="eventDetails_mapIMG" src={image} />
-            )} */}
-        </div>
+        <UploadPhotos
+          user={user}
+          isActive={isActive}
+          handleClickShow={handleClickShow}
+        />
       )}
 
       {/* ZDJĘCIA */}
       <div className="photos_profile_row">
-        <img
-          src="https://cdn.pixabay.com/photo/2015/03/21/14/34/silhouette-683751_960_720.jpg"
-          alt="img"
-          className="userFa avatar_rowUser profile_avatar"
-        />
-        <img
-          src="https://cdn.pixabay.com/photo/2015/03/21/14/34/silhouette-683751_960_720.jpg"
-          alt="img"
-          className="userFa avatar_rowUser profile_avatar"
-          id="profile_main_avatar"
-          value={user ? user.profile_photo : FaUser}
-        />
-        <button onClick={handleClickShow} className="" id="upload_photo">
-          UPLOAD PHOTO
-        </button>
-        <img
-          src="https://cdn.pixabay.com/photo/2015/03/21/14/34/silhouette-683751_960_720.jpg"
-          alt="img"
-          className="userFa avatar_rowUser profile_avatar"
-        />
+        {user ? (
+          <>
+            {user.images.length > 1 ? (
+              <img src={user.images[1]} alt="img" className="avatarProfile" />
+            ) : (
+              <div className="avatarProfile_fauser">
+                <FaUser />
+              </div>
+            )}
+            {user.images.length > 0 ? (
+              <img
+                src={user.images[0]}
+                alt="img"
+                className="avatarProfile"
+                id="profile_main_avatar"
+              />
+            ) : (
+              <div className="avatarProfile_fauser" id="profile_main_avatar">
+                <FaUser />
+              </div>
+            )}
+            <button onClick={handleClickShow} className="" id="upload_photo">
+              UPLOAD PHOTO
+            </button>
+
+            {user.images.length > 2 ? (
+              <img src={user.images[2]} alt="img" className="avatarProfile" />
+            ) : (
+              <div className="avatarProfile_fauser">
+                <FaUser />
+              </div>
+            )}
+          </>
+        ) : (
+          ""
+        )}
       </div>
 
       {/* LEWA KOLUMNA */}

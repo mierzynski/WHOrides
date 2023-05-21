@@ -55,6 +55,7 @@ const SignUpForm = () => {
       setCookie("AuthToken", response.data.token, { path: "/" });
       setCookie("UserId", response.data.userId, { path: "/" });
       setCookie("Email", response.data.email, { path: "/" });
+      setCookie("UserName", response.data.userName, { path: "/" });
 
       const success = response.status === 201;
       if (success) navigate("/profile");
@@ -148,7 +149,10 @@ const SignUpForm = () => {
                 required={true}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
-              <label onClick={() => navigate("/login")}>
+              <label
+                className="formSignUpLogIn_label"
+                onClick={() => navigate("/login")}
+              >
                 Already have account? Log in here
               </label>
               <label id="signUpError">{error}</label>

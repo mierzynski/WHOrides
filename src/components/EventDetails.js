@@ -85,6 +85,36 @@ const EventDetails = ({ clickedEvent }) => {
     setIsTextArea(true);
   };
 
+  const roundRate = (rates) => {
+    let returnedAvg;
+    let txt;
+    function round(value, step) {
+      step || (step = 1.0);
+      var inv = 1.0 / step;
+      return Math.round(value * inv) / inv;
+    }
+
+    if (rates.length > 0) {
+      let avgRate = rates.reduce((p, c) => p + c, 0) / rates.length;
+      returnedAvg = round(avgRate, 0.5);
+    } else {
+      returnedAvg = 0;
+    }
+
+    txt = returnedAvg + "/5 (" + rates.length + " ratings)";
+
+    return txt;
+  };
+
+  const convTodateAndTime = (timestamp) => {
+    const date = new Date(timestamp);
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    const dateFormat = hours + ":" + minutes + ", " + date.toDateString();
+
+    return dateFormat;
+  };
+
   const getUser = async () => {
     try {
       const response = await axios.get("http://localhost:8000/users", {
@@ -108,11 +138,7 @@ const EventDetails = ({ clickedEvent }) => {
           <div id="eventDetails_createdBy">created by:</div>
           <div id="eventDetails_author">
             {user ? user.name : ""} {user ? currentYear - user.birth_year : ""},{" "}
-            {/* {user
-              ? user.rates.reduce((a, b) => a + b, 0) / user.rates.length
-              : ""} */}
-            {/* /5 ({user ? user.rates.length : ""}
-            ratings) */}
+            {user ? roundRate(user.rates) : <></>}
           </div>
           <div id="eventDetails_participantsContainer">
             <span id="eventDetails_participantsLabel">PARTICIPANTS:</span>
@@ -135,6 +161,7 @@ const EventDetails = ({ clickedEvent }) => {
                 <button
                   className="eventDetails_buttons"
                   onClick={handleAskAboutEvent}
+                  disabled
                 >
                   ASK ABOUT EVENT
                 </button>
@@ -157,7 +184,9 @@ const EventDetails = ({ clickedEvent }) => {
               </>
             )}
           </div>
-          <div id="eventDetails_date">{clickedEvent.meeting_date}</div>
+          <div id="eventDetails_date">
+            {convTodateAndTime(clickedEvent.meeting_date)}
+          </div>
         </div>
       </div>
     </>

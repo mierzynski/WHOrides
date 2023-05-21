@@ -69,7 +69,10 @@ const LogInForm = () => {
               required={true}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <label onClick={() => navigate("/signup")}>
+            <label
+              className="formSignUpLogIn_label"
+              onClick={() => navigate("/signup")}
+            >
               Don't have account? Sign up here
             </label>
 
