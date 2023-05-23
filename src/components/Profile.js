@@ -2,8 +2,6 @@ import { FaUser } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import axios from "axios";
-import UpdatePhotos from "./UpdatePhotos";
-import CreateEvents from "./CreateEvents";
 import UploadPhotos from "./UploadPhotos";
 
 const Profile = () => {
@@ -22,7 +20,13 @@ const Profile = () => {
   const [distance_max, setdistance_max] = useState("");
   const [pace_min, setpace_min] = useState("");
   const [pace_max, setpace_max] = useState("");
-  console.log(user);
+
+  const [roadBike, setRoadBike] = useState("");
+  const [gravelBike, setGravelBike] = useState("");
+  const [mtbBike, setMtbBike] = useState("");
+  const [roadSurface, setRoadSurface] = useState("");
+  const [gravelSurface, setGravelSurface] = useState("");
+  const [mtbSurface, setMtbSurface] = useState("");
   /////////////////////////////////////////////////////////////
   // GET USER DATA
   const getUserData = async (e) => {
@@ -31,42 +35,105 @@ const Profile = () => {
         params: { userId },
       });
       setUser(response.data);
+      setlocation(response.data.location);
+      setDescripton(response.data.description);
+      setpace_min(response.data.pace_min);
+      setpace_max(response.data.pace_max);
+      setdistance_min(response.data.distance_min);
+      setdistance_max(response.data.distance_max);
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const userData = {
+    user_id: userId,
+    location: location,
+    description: description,
+    pace_min: pace_min,
+    pace_max: pace_max,
+    distance_min: distance_min,
+    distance_max: distance_max,
+    bike_types: [roadBike, gravelBike, mtbBike],
+    surface_types: [roadSurface, gravelSurface, mtbSurface],
   };
 
   // PRZYCISK SAVE
   const handleSaveChanges = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put("http://localhost:8000/users", {
-        userId,
-        location,
-        description,
-        distance_min,
-        distance_max,
-        pace_min,
-        pace_max,
+      const response = await axios.put("http://localhost:8000/updateuser", {
+        userData,
       });
       const success = response.satusCode === 200;
-      // window.location.reload(false);
       getUserData();
-      console.log(user);
       if (success) console.log("saved");
     } catch (error) {
       console.log(error);
     }
   };
 
-  //przytrzymanie buttona
   const handleClick = (event) => {
     let buttonClass = event.target.className;
+    let buttonText = event.target.innerText;
+    let buttonId = event.target.id;
 
-    if (buttonClass == "notClickedButtonType") {
-      event.target.className = "clickedButtonType";
+    if (buttonId == "bikeTypes") {
+      if (buttonClass == "notClickedButtonType") {
+        switch (buttonText) {
+          case "road":
+            setRoadBike(buttonText);
+            break;
+          case "gravel":
+            setGravelBike(buttonText);
+            break;
+          case "mtb":
+            setMtbBike(buttonText);
+            break;
+        }
+        event.target.className = "clickedButtonType";
+      } else {
+        switch (buttonText) {
+          case "road":
+            setRoadBike("");
+            break;
+          case "gravel":
+            setGravelBike("");
+            break;
+          case "mtb":
+            setMtbBike("");
+            break;
+        }
+        event.target.className = "notClickedButtonType";
+      }
     } else {
-      event.target.className = "notClickedButtonType";
+      if (buttonClass == "notClickedButtonType") {
+        switch (buttonText) {
+          case "road":
+            setRoadSurface(buttonText);
+            break;
+          case "gravel":
+            setGravelSurface(buttonText);
+            break;
+          case "mtb":
+            setMtbSurface(buttonText);
+            break;
+        }
+        event.target.className = "clickedButtonType";
+      } else {
+        switch (buttonText) {
+          case "road":
+            setRoadSurface("");
+            break;
+          case "gravel":
+            setGravelSurface("");
+            break;
+          case "mtb":
+            setMtbSurface("");
+            break;
+        }
+        event.target.className = "notClickedButtonType";
+      }
     }
   };
 
@@ -74,16 +141,11 @@ const Profile = () => {
   const handleClickShow = () => {
     setIsShown((current) => !current);
     setIsActive((current) => !current);
-    console.log("elo");
   };
 
-  //kliknięty button
-  const buttonTypes = (value) => {
+  const buttonTypes = (value, id) => {
     return (
-      <button
-        className={isClicked ? "clickedButtonType" : "notClickedButtonType"}
-        onClick={handleClick}
-      >
+      <button id={id} className={"notClickedButtonType"} onClick={handleClick}>
         {value}
       </button>
     );
@@ -92,7 +154,6 @@ const Profile = () => {
   //pobranie danych przy ładowaniu strony
   useEffect(() => {
     getUserData();
-    setpace_max(user ? user.pace_max : "0");
   }, []);
 
   ///////////////////////////////////////////////////////////////
@@ -151,9 +212,9 @@ const Profile = () => {
         <div id="collumn_data_profile_left">
           <div className="titleOfFilter title_details_left">bike types</div>
           <div className="clicableTypes">
-            {buttonTypes("road")}
-            {buttonTypes("gravel")}
-            {buttonTypes("mtb")}
+            {buttonTypes("road", "bikeTypes")}
+            {buttonTypes("gravel", "bikeTypes")}
+            {buttonTypes("mtb", "bikeTypes")}
           </div>
           <div className="titleOfFilter title_details_left">average pace</div>
           <div className="rangeFilter">
@@ -161,8 +222,7 @@ const Profile = () => {
               className="inputRange"
               type="number"
               name="userAveragePaceStart"
-              placeholder="0"
-              value={user ? user.pace_min : ""}
+              placeholder={user ? user.pace_min : ""}
               onChange={(e) => setpace_min(e.target.value)}
             ></input>
             <div className="rangeMinus">-</div>
@@ -170,8 +230,7 @@ const Profile = () => {
               className="inputRange"
               type="number"
               name="userAveragePaceEnd"
-              placeholder="0"
-              value={user ? user.pace_max : ""}
+              placeholder={user ? user.pace_max : ""}
               onChange={(user) => setpace_max(user.target.value)}
             ></input>
           </div>
@@ -208,9 +267,7 @@ const Profile = () => {
               id="userLocation"
               type="text"
               name="userLocation"
-              placeholder="Warsaw"
-              //value nie zmienia się bo na stałe jest ustawione z db i odświeża się przy kazdym wpisie
-              value={user ? user.location : ""}
+              placeholder={user ? user.location : ""}
               onChange={(e) => setlocation(e.target.value)}
             />
           </div>
@@ -223,9 +280,9 @@ const Profile = () => {
         <div id="collumn_data_profile_right">
           <div className="titleOfFilter title_details_right">surface types</div>
           <div className="clicableTypes">
-            {buttonTypes("mixed")}
-            {buttonTypes("forest")}
-            {buttonTypes("road")}
+            {buttonTypes("road", "surfaceTypes")}
+            {buttonTypes("gravel", "surfaceTypes")}
+            {buttonTypes("mtb", "surfaceTypes")}
           </div>
           <div className="titleOfFilter title_details_right">
             distance range
@@ -235,8 +292,7 @@ const Profile = () => {
               className="inputRange"
               type="number"
               name="userRangeStart"
-              placeholder="0"
-              value={user ? user.distance_min : ""}
+              placeholder={user ? user.distance_min : ""}
               onChange={(e) => setdistance_min(e.target.value)}
             ></input>
             <div className="rangeMinus">-</div>
@@ -244,8 +300,7 @@ const Profile = () => {
               className="inputRange"
               type="number"
               name="userRangeEnd"
-              placeholder="0"
-              value={user ? user.distance_max : ""}
+              placeholder={user ? user.distance_max : ""}
               onChange={(e) => setdistance_max(e.target.value)}
             ></input>
           </div>
@@ -260,8 +315,7 @@ const Profile = () => {
           id="description_rowUser_main_profile"
           name="userDescription"
           type="text"
-          placeholder={user ? user.description : "Something about you"}
-          value={user ? user.description : description}
+          placeholder={user ? user.description : ""}
           onChange={(e) => setDescripton(e.target.value)}
         ></textarea>
       </div>

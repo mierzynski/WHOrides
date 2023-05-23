@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
-import { FaUser } from "react-icons/fa";
-import { useCookies } from "react-cookie";
+import { useState } from "react";
+import { FaTimes } from "react-icons/fa";
 import axios from "axios";
 
 const UploadPhotos = ({ user, isActive, handleClickShow }) => {
@@ -50,11 +49,9 @@ const UploadPhotos = ({ user, isActive, handleClickShow }) => {
       }}
     >
       {/* tytuł */}
-      <div id="upload_photo_title">
-        <div></div>
-        <div>photos</div>
-        <button className="upload_button" onClick={handleClickShow}>
-          X
+      <div className="chatHeader">
+        <button className="closeWindow_button" onClick={handleClickShow}>
+          <FaTimes id="closeWindow" />
         </button>
       </div>
       {/* srodek */}
@@ -80,7 +77,11 @@ const UploadPhotos = ({ user, isActive, handleClickShow }) => {
         </label>
         <input type="file" id="files" onChange={convertToBase64} />
         <img id="uploadPhoto_previewImg" src={image} />
-        <button className="upload_button" onClick={uploadPhoto}>
+        <button
+          className="upload_button"
+          id="saveUpdatedPhotos_button"
+          onClick={uploadPhoto}
+        >
           Save
         </button>
       </div>

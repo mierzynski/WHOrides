@@ -42,6 +42,7 @@ nav button {
   padding: 15px;
   border: none;
   background-color: transparent;
+  transition: 0.3s;
 }
 
 nav button:hover {
@@ -118,7 +119,19 @@ nav button:focus {
   box-shadow: 0px 0px 0px #000000;
   border-radius: 25px;
   padding: 0.25rem 2.5rem;
+  transition: 0.3s;
 }
+
+.button_curved:hover {
+  background-color: #000000;
+  color: #E7855B;
+  border: 2px solid #E7855B;
+}
+
+/* .button_curved:active {
+  border: 4px solid #000000;
+  background: #a15b3d;
+} */
 
 .button_curved span {
   font-family: 'Chakra Petch';
@@ -179,6 +192,13 @@ nav button:focus {
   margin: 0% 1%;
   border: 1px solid #000000;
   width: 14%;
+  transition: 0.3s;
+}
+
+#botton_SIGNUP:hover {
+  background-color: #000000;
+  color: #D1FF87;
+  border: 1px solid #D1FF87;
 }
 
 #botton_DMUS {
@@ -190,6 +210,12 @@ nav button:focus {
   margin: 0% 1%;
   border: 1px solid #000000;
   width: 14%;
+  transition: 0.3s;
+}
+
+#botton_DMUS:hover {
+  background-color: #000000;
+  color: #FFE2BF;
 }
 
 /* SIGN UP/LOG IN BACKGROUND */
@@ -348,6 +374,13 @@ nav button:focus {
   color: #D1FF87;
   padding: 0.1rem 2rem;
   margin-top: 0.5rem;
+  transition: 0.3s;
+}
+
+.submitButton:hover{
+background-color: #D1FF87;
+color: #000000;
+border: 1px solid #000000;
 }
 
 .inputStepTwo {
@@ -655,6 +688,13 @@ nav button:focus {
   font-weight: 500;
   font-size: 15px;
   padding: 0rem 2.5rem;
+  transition: 0.3s;
+}
+
+#inviteToFriends_button:hover {
+  background-color: #000000;
+  color: #D1FF87;
+  border: 2px solid #D1FF87;
 }
 
 #textAreaMessageWithInvite{
@@ -840,7 +880,12 @@ nav button:focus {
   font-size: 0.75rem;
   align-items: center;
   text-align: center;
-  justify-content: center;  
+  justify-content: center;
+  transition: 0.3s;
+}
+
+#upload_photo:hover {
+  background: rgba(231, 133, 91, 0.6);
 }
 
 .data_profile_row{
@@ -946,6 +991,12 @@ textarea{
   margin-bottom: 1rem;
 }
 
+#save_changes_profile:hover{
+  background-color: #000000;
+  color: #D1FF87;
+  border: 1px solid #D1FF87;
+}
+
 #upload_photos{
   background: #FFE2BF;
   border: 2px solid #000000;
@@ -958,34 +1009,47 @@ textarea{
   align-items: center;
   justify-content: center;
   width: 45%;
-  padding: 0.5rem;
-}
-
-#upload_photo_title{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-  width: 100%;
 }
 
 .upload_button{
   background: #D1FF87;
+  border: 2px solid #000000;
   font-family: 'Chakra Petch';
   font-weight: 600;
   font-size: 0.75rem;
+  height: 6.25rem;
   width: 33%;
-  /* display: flex;
+  display: flex;
   justify-content: center;
-  text-align: center; */
-  padding: auto;
+  align-items: center;
+  padding: 0px;
+  margin: 0.2rem;
+  transition: 0.3s;
 }
+
+.upload_button:hover {
+  background-color: #000000;
+  color: #D1FF87;
+  border: 2px solid #D1FF87;
+}
+
+#saveUpdatedPhotos_button{
+  height: 6.438rem;
+}
+
+#files{
+  visibility: hidden;
+  width: 0px;
+  height: 0px;
+  padding: 0px;
+}
+
 
 #uploadPhoto_previewImg{
   display: flex;
   margin: 0rem 0.625rem;
-  width: 33%;
+  height: 6.25rem;
+  margin: 0.2rem;
 }
 
 .uploadedPhotos_button{
@@ -1006,15 +1070,10 @@ textarea{
 }
 
 #upload_photo_buttons{
-  /* display: flex;
-  justify-content: space-evenly;
-  
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-  width: 50%; */
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: end;
 }
 
 .avatarUploaded{
@@ -1139,10 +1198,15 @@ textarea{
   border-width: 0px 0px 2px 0px;
   border-color: #868686;
   border-style: solid;
+  transition: 0.3s;
 }
 
 .bgChatRow:focus {
   border: 3px solid #000000;
+}
+
+.bgChatRow:hover {
+  background-color: #D1FF87;
 }
 
 .chatRowAvatar{
@@ -1328,6 +1392,12 @@ textarea{
   font-family: 'Chakra Petch';
   font-weight: 600;
   font-size: 1.75rem;
+  transition: 0.3s;
+}
+
+.sendMessage_button:hover {
+  background-color: #000000;
+  color: #D1FF87;
 }
 
 #textAreaMessage {
@@ -1371,6 +1441,12 @@ textarea{
   font-weight: 500;
   font-size: 0.938rem;
   padding: 0.625rem 1.5rem;
+  /* transition: 0.3s; */
+}
+
+.searchOrCreate_button:hover {
+  border: 2px solid #383838;
+  font-weight: 600;
 }
 
 .searchOrCreate_buttonClicked{
@@ -1392,6 +1468,12 @@ label {
   font-weight: 500;
   font-size: 0.938rem;
   padding: 0.625rem 1.5rem;
+}
+
+label:hover {
+  border: 2px solid #D1FF87;
+  background-color: #000000;
+  color: #D1FF87;
 }
 
 .createEventContainer {
@@ -1524,6 +1606,13 @@ label {
   font-weight: 500;
   font-size: 0.9rem;
   padding: 0rem 1rem;
+  transition: 0.3s;
+}
+
+#createEvent_button:hover{
+  background-color: #000000;
+  color: #D1FF87;
+  border: 2px solid #D1FF87;
 }
 
 .livePreviewContainer{
@@ -1694,6 +1783,13 @@ label {
   font-weight: 500;
   font-size: 0.625rem;
   margin: 0.6rem 0.6rem;
+  transition: 0.3s;
+}
+
+.eventDetails_buttons:hover{
+background-color: #000000;
+color: #D1FF87;
+border: 1px solid #D1FF87;
 }
 
 #eventDetails_date{
@@ -1761,6 +1857,13 @@ label {
 .eventFilters_searchButton{
   background-color: #E7855B;
   margin-top: 1rem;
+  transition: 0.3s;
+}
+
+.eventFilters_searchButton:hover {
+  background-color: #000000;
+  color: #E7855B;
+  border: 2px solid #E7855B;
 }
 
 #events_midContainer{
