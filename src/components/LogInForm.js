@@ -30,6 +30,7 @@ const LogInForm = () => {
       window.location.reload();
     } catch (error) {
       console.log(error);
+      setError("Wrong credentials");
     }
   };
 
@@ -64,7 +65,7 @@ const LogInForm = () => {
             />
 
             <input
-              type="text"
+              type="password"
               placeholder="Password"
               required={true}
               onChange={(e) => setPassword(e.target.value)}
@@ -74,6 +75,9 @@ const LogInForm = () => {
               onClick={() => navigate("/signup")}
             >
               Don't have account? Sign up here
+            </label>
+            <label id="signUpError" className="formSignUpLogIn_label">
+              {error}
             </label>
 
             <button

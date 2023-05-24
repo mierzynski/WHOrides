@@ -36,14 +36,27 @@ const SignUpForm = () => {
 
   const navigate = useNavigate();
 
+  const stepOneCheck = (e) => {
+    e.preventDefault();
+    let upperCaseLetters = /[A-Z]/g;
+    let numbers = /[0-9]/g;
+    if (!password.match(upperCaseLetters)) {
+      setError("Password must contain a capital letter");
+    } else if (!password.match(numbers)) {
+      setError("Password must contain a number");
+    } else if (password.length < 8) {
+      setError("Password must be at least 8 characters long");
+    } else if (password !== confirmPassword) {
+      setError("Passwords need to match!");
+    } else {
+      setStepTwo(true);
+    }
+  };
+
   const handleSubmitRegister = async (e) => {
     e.preventDefault();
 
     try {
-      if (password !== confirmPassword) {
-        setError("Passwords need to match!");
-        return;
-      }
       const response = await axios.post("http://localhost:8000/signup", {
         email,
         password,
@@ -62,7 +75,7 @@ const SignUpForm = () => {
 
       window.location.reload();
     } catch (error) {
-      console.log(error);
+      setError("User already exist");
     }
   };
 
@@ -118,6 +131,9 @@ const SignUpForm = () => {
                   onChange={(e) => setLocation(e.target.value)}
                 />
               </div>
+              <label id="signUpError" className="formSignUpLogIn_label">
+                {error}
+              </label>
 
               <button className="submitButton" onClick={handleSubmitRegister}>
                 GO FOR A RIDE!
@@ -138,13 +154,13 @@ const SignUpForm = () => {
               />
 
               <input
-                type="text"
+                type="password"
                 placeholder="Password"
                 required={true}
                 onChange={(e) => setPassword(e.target.value)}
               />
               <input
-                type="text"
+                type="password"
                 placeholder="Confirm password"
                 required={true}
                 onChange={(e) => setConfirmPassword(e.target.value)}
@@ -155,12 +171,14 @@ const SignUpForm = () => {
               >
                 Already have account? Log in here
               </label>
-              <label id="signUpError">{error}</label>
+              <label id="signUpError" className="formSignUpLogIn_label">
+                {error}
+              </label>
 
               <button
                 className="submitButton"
                 type="submit"
-                onClick={() => setStepTwo(true)}
+                onClick={stepOneCheck}
               >
                 NEXT
               </button>
