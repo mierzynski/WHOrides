@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import { FaTimes } from "react-icons/fa";
 
 const EventDetails = ({ clickedEvent }) => {
   const [user, setUser] = useState(null);
@@ -14,6 +15,7 @@ const EventDetails = ({ clickedEvent }) => {
   const [isJoined, setIsJoined] = useState(false);
   const [textArea, setTextArea] = useState("");
   const [isTextArea, setIsTextArea] = useState(false);
+  const [isZoomed, setIsZoomed] = useState(false);
 
   const roundAvg = (array) => {
     let sum = 0;
@@ -146,7 +148,31 @@ const EventDetails = ({ clickedEvent }) => {
               {clickedEvent.participants.length}
             </span>
           </div>
-          <img id="eventDetails_mapIMG" src={clickedEvent.map_img} />
+          <img
+            id="eventDetails_mapIMG"
+            src={clickedEvent.map_img}
+            onClick={() => setIsZoomed(true)}
+          />
+          {isZoomed ? (
+            <div id="zoomedImg_container">
+              <div id="closeZoom_container">
+                <button
+                  className="closeZoom_button closeWindow_button"
+                  onClick={() => setIsZoomed(false)}
+                >
+                  <FaTimes id="closeWindow" />
+                </button>
+              </div>
+
+              <img
+                id="zoomedMapIMG"
+                src={clickedEvent.map_img}
+                // onClick={() => setIsZoomed(true)}
+              />
+            </div>
+          ) : (
+            ""
+          )}
           <button id="eventDetails_clickToZoom">click to zoom track</button>
           <div id="eventDetails_buttonsContainer">
             {isTextArea ? (

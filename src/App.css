@@ -832,6 +832,26 @@ border: 1px solid #000000;
 
 /* PROFILE */
 
+#profile_container{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+#commentsAndEventsProfile_container{
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 35rem;
+  width: 13rem;
+  /* border: 2px solid #000000; */
+  background: linear-gradient(180deg, #FFFFFF -150%, rgba(255, 255, 255, 0) 100%), #BF65C2;
+  /* box-shadow: inset 0 0 4px 2px rgba(0, 0, 0, 0.75); */
+}
 
 .photos_profile_row {
   display: flex;
@@ -1745,6 +1765,34 @@ label:hover {
   height: 7.031rem;
   background-color: #8B898B;
   margin-top: 0.6rem;
+}
+
+#zoomedImg_container{
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 0;
+}
+
+#zoomedMapIMG{
+  height: 70%;
+}
+
+.closeZoom_button{
+  color: #FFFFFF;
+}
+
+#closeZoom_container{
+  width: 60%;
+  display: flex;
+  justify-content: end;
 }
 
 #eventDetails_clickToZoom{

@@ -20,6 +20,7 @@ const RateUser = (ratedUserId) => {
       name: userName,
       comment: comment,
       rate: rating,
+      date: new Date().toISOString(),
     };
 
     try {

@@ -49,13 +49,12 @@ const CreateEvents = () => {
   };
 
   const handleCreateEvent = async () => {
+    console.log("1");
     try {
       const response = await axios.post("http://localhost:8000/createevent", {
         detailsObj,
       });
-      // console.log(response);
-      // if (response.status === 201) navigate("/profile");
-
+      alert("Event has been created");
       window.location.reload();
     } catch (error) {
       console.log(error);
