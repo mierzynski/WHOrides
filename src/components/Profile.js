@@ -78,9 +78,8 @@ const Profile = () => {
       const response = await axios.put("http://localhost:8000/updateuser", {
         userData,
       });
-      const success = response.satusCode === 200;
       getUserData();
-      if (success) console.log("saved");
+      alert("Changes have been saved");
     } catch (error) {
       console.log(error);
     }
@@ -183,38 +182,42 @@ const Profile = () => {
   return (
     <div id="profile_container">
       <div id="commentsAndEventsProfile_container">
-        <span>your events</span>
-        {events?.map((event) => (
-          <button
-            className="bgEventThumbnail bg_rectangle"
-            key={event._id}
-            // onClick={(e) => handleClickEvent(event)}
-          >
-            <div className="eventThumbnailTitle">{event.title}</div>
-            <div className="eventThumbnailDetailRow">
-              <span className="eventThumbnailLabels">distance:</span>
-              <span className="eventThumbnailDetail">{event.distance} km</span>
-            </div>
-            <div className="eventThumbnailDetailRow">
-              <span className="eventThumbnailLabels">avg pace:</span>
-              <span className="eventThumbnailDetail">
-                {event.avg_pace} km/h
-              </span>
-            </div>
-            <div className="eventThumbnailDetailRow">
-              <span className="eventThumbnailLabels">surface:</span>
-              <span className="eventThumbnailDetail">{event.surface}</span>
-            </div>
-            <span className="eventThumbnailLabels">location:</span>
-            <span className="eventThumbnailDetail">{event.location}</span>
-            <div className="eventThumbnailsDescription">
-              {event.description}
-            </div>
-            <div className="eventThumbnailDetail bottomDateEventThumbnail">
-              {convTodateAndTime(event.meeting_date)}
-            </div>
-          </button>
-        ))}
+        <span className="columnTitle_profile">your events</span>
+        <div className="scrollYColumn_profile">
+          {events?.map((event) => (
+            <button
+              className="bgEventThumbnail bg_rectangle"
+              key={event._id}
+              // onClick={(e) => handleClickEvent(event)}
+            >
+              <div className="eventThumbnailTitle">{event.title}</div>
+              <div className="eventThumbnailDetailRow">
+                <span className="eventThumbnailLabels">distance:</span>
+                <span className="eventThumbnailDetail">
+                  {event.distance} km
+                </span>
+              </div>
+              <div className="eventThumbnailDetailRow">
+                <span className="eventThumbnailLabels">avg pace:</span>
+                <span className="eventThumbnailDetail">
+                  {event.avg_pace} km/h
+                </span>
+              </div>
+              <div className="eventThumbnailDetailRow">
+                <span className="eventThumbnailLabels">surface:</span>
+                <span className="eventThumbnailDetail">{event.surface}</span>
+              </div>
+              <span className="eventThumbnailLabels">location:</span>
+              <span className="eventThumbnailDetail">{event.location}</span>
+              <div className="eventThumbnailsDescription">
+                {event.description}
+              </div>
+              <div className="eventThumbnailDetail bottomDateEventThumbnail">
+                {convTodateAndTime(event.meeting_date)}
+              </div>
+            </button>
+          ))}
+        </div>
       </div>
       <div className="bg_rectangle">
         {isShown && (
@@ -394,10 +397,12 @@ const Profile = () => {
         </div>
       </div>
       <div id="commentsAndEventsProfile_container">
-        <span>comments</span>
-        {user
-          ? user.comments?.map((comment) => <CommentRow comment={comment} />)
-          : "No comments"}
+        <span className="columnTitle_profile">comments</span>
+        <div className="scrollYColumn_profile">
+          {user
+            ? user.comments?.map((comment) => <CommentRow comment={comment} />)
+            : "No comments"}
+        </div>
       </div>
     </div>
   );

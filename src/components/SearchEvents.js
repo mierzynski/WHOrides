@@ -26,16 +26,6 @@ const SearchEvents = () => {
     startLocation: startLocation,
   };
 
-  const detailsArray = [
-    "TITLE OF EVENT",
-    60,
-    21,
-    "road",
-    "Poznań, Most Teatralny",
-    "A few words about event",
-    "2023.04.20 5:30pm",
-  ];
-
   return (
     <div className="searchEvent_container">
       <div className="events_filtersAndDetailsContainer">
@@ -107,7 +97,10 @@ const SearchEvents = () => {
               onChange={(e) => setStartLocation(e.target.value)}
             ></input>
           </div>
-          <button className="eventFilters_searchButton searchOrCreate_buttonClicked">
+          <button
+            className="eventFilters_searchButton searchOrCreate_buttonClicked"
+            // onClick={(e) => setClickedSearch(true)}
+          >
             SEARCH
           </button>
         </div>

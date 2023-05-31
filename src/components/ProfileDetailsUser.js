@@ -30,6 +30,10 @@ const ProfileDetailsUser = (props) => {
       members_name: [userName, user.name],
     };
 
+    if (textArea == "") {
+      newChat.messages[0].msg = "Hej, chcesz być moim przyjacielem???";
+    }
+
     const invitedUserId = user.user_id;
 
     try {

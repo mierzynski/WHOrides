@@ -40,7 +40,12 @@ const SignUpForm = () => {
     e.preventDefault();
     let upperCaseLetters = /[A-Z]/g;
     let numbers = /[0-9]/g;
-    if (!password.match(upperCaseLetters)) {
+    let atSign = email.indexOf("@");
+    let dotSign = email.indexOf(".");
+    let mailFormat = /^[A-Za-z0-9 ]+$/;
+    if (atSign < 1 || dotSign < atSign + 2 || dotSign + 2 >= email.length) {
+      setError("Please add @ and . in email");
+    } else if (!password.match(upperCaseLetters)) {
       setError("Password must contain a capital letter");
     } else if (!password.match(numbers)) {
       setError("Password must contain a number");
@@ -50,6 +55,7 @@ const SignUpForm = () => {
       setError("Passwords need to match!");
     } else {
       setStepTwo(true);
+      setError(null);
     }
   };
 

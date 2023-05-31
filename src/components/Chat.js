@@ -23,7 +23,7 @@ const Chat = ({ descendingOrderMessages, friendId, isPendingFriend }) => {
     <div className="chatContainer">
       {isPendingFriend ? (
         <div className="friendInvitation_container bg_rectangle">
-          <span>Mati invited you to friends</span>
+          <span>invitation to friends</span>
           <button onClick={acceptFriend} className="invitationButtons">
             accept
           </button>
