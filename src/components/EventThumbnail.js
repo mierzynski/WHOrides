@@ -1,9 +1,17 @@
 import { useState } from "react";
 import axios from "axios";
 
-const EventThumbnail = ({ detailsObj, newFilters, handleClickEvent }) => {
+const EventThumbnail = ({
+  detailsObj,
+  newFilters,
+  handleClickEvent,
+  clickedSearch,
+  setClickedSearch,
+}) => {
   const [events, setEvents] = useState();
   const [filters, setFilters] = useState();
+
+  console.log(clickedSearch);
 
   const convTodateAndTime = (timestamp) => {
     const date = new Date(timestamp);
@@ -26,8 +34,10 @@ const EventThumbnail = ({ detailsObj, newFilters, handleClickEvent }) => {
     }
   };
 
-  if (newFilters && newFilters != filters) {
+  if (clickedSearch && newFilters && newFilters != filters) {
+    console.log(newFilters);
     getEvents();
+    setClickedSearch(false);
   }
 
   if (detailsObj) {

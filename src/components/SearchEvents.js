@@ -11,6 +11,7 @@ const SearchEvents = () => {
   const [surface, setSurface] = useState(null);
   const [startLocation, setStartLocation] = useState(null);
   const [clickedEvent, setClickedEvent] = useState();
+  const [clickedSearch, setClickedSearch] = useState(false);
 
   const handleClickEvent = (event) => {
     setClickedEvent(event);
@@ -99,7 +100,7 @@ const SearchEvents = () => {
           </div>
           <button
             className="eventFilters_searchButton searchOrCreate_buttonClicked"
-            // onClick={(e) => setClickedSearch(true)}
+            onClick={(e) => setClickedSearch(true)}
           >
             SEARCH
           </button>
@@ -109,6 +110,8 @@ const SearchEvents = () => {
         <EventThumbnail
           handleClickEvent={handleClickEvent}
           newFilters={newFilters}
+          clickedSearch={clickedSearch}
+          setClickedSearch={setClickedSearch}
         />
       </div>
       {clickedEvent ? <EventDetails clickedEvent={clickedEvent} /> : <></>}
